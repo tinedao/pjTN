@@ -9,7 +9,7 @@
         if (alertBox) {
             alertBox.style.display = 'none';
         }
-    }, 1000);
+    }, 5000);
 </script>
 
 

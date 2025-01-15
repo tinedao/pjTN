@@ -24,15 +24,48 @@ class Database {
     // Thêm dữ liệu vào bảng
     public function insert($table, $data) {
         $columns = implode(", ", array_keys($data));
-        $values = implode("', '", array_map([$this->conn, 'real_escape_string'], array_values($data)));
-        $sql = "INSERT INTO $table ($columns) VALUES ('$values')";
-
-        if (!$this->conn->query($sql)) {
-            error_log("Insert query failed: " . $this->conn->error);
+        
+        // Chuẩn bị placeholders `?` cho Prepared Statement
+        $placeholders = implode(", ", array_fill(0, count($data), "?"));
+        
+        $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+        
+        // Chuẩn bị câu lệnh SQL
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            error_log("Failed to prepare statement: " . $this->conn->error);
             return false;
         }
+        
+        // Gắn kiểu dữ liệu và giá trị vào câu lệnh Prepared Statement
+        $types = ""; // Chuỗi kiểu dữ liệu: 's' (string), 'i' (integer), 'd' (double), 'b' (blob)
+        $values = [];
+        foreach ($data as $key => $value) {
+            if (is_int($value)) {
+                $types .= "i";
+            } elseif (is_float($value)) {
+                $types .= "d";
+            } elseif (is_null($value)) {
+                $types .= "s"; // NULL được xử lý như string
+                $value = null;
+            } else {
+                $types .= "s";
+            }
+            $values[] = $value;
+        }
+        
+        // Gắn dữ liệu vào câu lệnh Prepared Statement
+        $stmt->bind_param($types, ...$values);
+        
+        // Thực thi câu lệnh
+        if (!$stmt->execute()) {
+            error_log("Insert query failed: " . $stmt->error);
+            return false;
+        }
+        
         return true;
     }
+    
 
     // Cập nhật dữ liệu trong bảng
     public function update($table, $id, $data) {

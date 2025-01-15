@@ -29,7 +29,9 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
+<?php
+  include('../layouts/alert.php');
+?>
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -98,7 +100,7 @@
             if($role == "owner"):
           ?>
                 <li class="nav-item">
-            <a href="<?php $url_dir ?>../vendor/AdminLTE/pages/calendar.html" class="nav-link <?php if($page == "hotelManagement") echo "active"; ?>">
+            <a href="<?php $url_dir ?>index.php" class="nav-link <?php if($page == "hotelManagement") echo "active"; ?>">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Quản lý khách sạn
@@ -106,7 +108,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php $url_dir ?>../vendor/AdminLTE/pages/gallery.html" class="nav-link <?php if($page == "booking") echo "active"; ?>">
+            <a href="<?php $url_dir ?>booking.php" class="nav-link <?php if($page == "booking") echo "active"; ?>">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Booking
@@ -114,7 +116,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php $url_dir ?>../vendor/AdminLTE/#" class="nav-link <?php if($page == "typeRoom") echo "active"; ?>">
+            <a href="<?php $url_dir ?>typeRoom.php" class="nav-link <?php if($page == "typeRoom") echo "active"; ?>">
               <i class="nav-icon far fa-envelope"></i>
               <p>
                 Type Room
@@ -122,7 +124,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php $url_dir ?>../vendor/AdminLTE/#" class="nav-link <?php if($page == "room") echo "active"; ?>">
+            <a href="<?php $url_dir ?>roomMan.php" class="nav-link <?php if($page == "room") echo "active"; ?>">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Room
@@ -130,22 +132,26 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php $url_dir ?>../vendor/AdminLTE/#" class="nav-link <?php if($page == "room") echo "active"; ?>">
+            <a href="<?php $url_dir ?>discount.php" class="nav-link <?php if($page == "discount") echo "active"; ?>">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Discount
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?php $url_dir ?>../action/logout.php" class="nav-link">
+              <i class="nav-icon far fa-plus-square"></i>
+              <p>
+                Logout
+              </p>
+            </a>
+          </li>
           <?php
             else:
           ?>
-          
-          <?php
-            endif;
-          ?>
           <li class="nav-item">
-            <a href="<?php $url_dir ?>owners.php" class="nav-link">
+            <a href="<?php $url_dir ?>owners.php" class="nav-link <?php if($page == "ownerManagement") echo "active"; ?>">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Quản lý owners
@@ -153,7 +159,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php $url_dir ?>reviews.php" class="nav-link">
+            <a href="<?php $url_dir ?>reviews.php" class="nav-link <?php if($page == "rvManagement") echo "active"; ?>">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Quản lý reviews
@@ -161,7 +167,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php $url_dir ?>../action/logout.php" class="nav-link">
+            <a href="<?php $url_dir ?>users.php" class="nav-link <?php if($page == "usersManagement") echo "active"; ?>">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Quản lý Users
@@ -169,7 +175,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php $url_dir ?>../action/logout.php" class="nav-link">
+            <a href="<?php $url_dir ?>hotels.php" class="nav-link <?php if($page == "hotelManagement") echo "active"; ?>">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Quản lý trạng thái khách sạn
@@ -184,6 +190,10 @@
               </p>
             </a>
           </li>
+          <?php
+            endif;
+          ?>
+          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

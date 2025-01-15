@@ -6,7 +6,7 @@ include 'layouts/navbar.php';
 $db = new Database();
 $locations = $db->select('locations');
 
-$conditionHotel = "";
+$conditionHotel = "status = 1";
 $hotels = $db->select('hotels',$conditionHotel,4);
 
 ?>
@@ -25,7 +25,7 @@ $hotels = $db->select('hotels',$conditionHotel,4);
 <form method="POST" action="hotels.php">
   <section class="home" id="home">
     <div class="container">
-      <h1>Make Memories</h1>
+      <h1>Phu Tho Booking</h1>
       <p>Discover the place where you have fun & enjoy a lot</p>
 
       <div class="content grid">

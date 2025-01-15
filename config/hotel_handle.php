@@ -1,6 +1,6 @@
 <?php
 $index = true;
-$condition = "";
+$condition = "status = 1";
 $limit = 10;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -52,7 +52,8 @@ $limit = 10;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['location']) && !empty($_POST['location'])) {
     $location_id = $_POST['location'];
-    $condition = "location_id = $location_id";
+    $condition = "location_id = $location_id AND status = 1";
+
 
     // Truy vấn cơ sở dữ liệu để lấy danh sách khách sạn theo location_id
     $hotels = $db->select('hotels', $condition, $limit);
@@ -67,5 +68,5 @@ if (!empty($toado)) {
 
 
 }else{
-    $hotels = $db->select('hotels', "", $limit);
+    $hotels = $db->select('hotels', "status = 1", $limit);
 }
