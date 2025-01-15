@@ -72,7 +72,13 @@
         <div class="image">
         </div>
         <div class="info">
-          <p class="d-block" style="color:white;">Xin Chào <?php echo $_SESSION['username']; ?></p>
+          <p class="d-block" style="color:white;">Xin Chào <?php
+           if($role == "owner"){
+            echo $_SESSION['username'];
+           }else{
+            echo "Admin";
+           }
+           ?></p>
         </div>
       </div>
 
@@ -81,7 +87,13 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-header">EXAMPLES</li>
+          <li class="nav-header"><?php 
+            if ($role == "owner") {
+              echo "Quản lý khách sạn";
+            }else{
+              echo "Quản lý website";
+            }
+          ?></li>
           <?php
             if($role == "owner"):
           ?>
@@ -117,13 +129,53 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?php $url_dir ?>../vendor/AdminLTE/#" class="nav-link <?php if($page == "room") echo "active"; ?>">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Discount
+              </p>
+            </a>
+          </li>
           <?php
             else:
           ?>
-
+          
           <?php
             endif;
           ?>
+          <li class="nav-item">
+            <a href="<?php $url_dir ?>owners.php" class="nav-link">
+              <i class="nav-icon far fa-plus-square"></i>
+              <p>
+                Quản lý owners
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php $url_dir ?>reviews.php" class="nav-link">
+              <i class="nav-icon far fa-plus-square"></i>
+              <p>
+                Quản lý reviews
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php $url_dir ?>../action/logout.php" class="nav-link">
+              <i class="nav-icon far fa-plus-square"></i>
+              <p>
+                Quản lý Users
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php $url_dir ?>../action/logout.php" class="nav-link">
+              <i class="nav-icon far fa-plus-square"></i>
+              <p>
+                Quản lý trạng thái khách sạn
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="<?php $url_dir ?>../action/logout.php" class="nav-link">
               <i class="nav-icon far fa-plus-square"></i>

@@ -6,6 +6,9 @@ include 'layouts/navbar.php';
 $db = new Database();
 $locations = $db->select('locations');
 
+$conditionHotel = "";
+$hotels = $db->select('hotels',$conditionHotel,4);
+
 ?>
 <style>
   .locationOp{
@@ -75,10 +78,11 @@ $locations = $db->select('locations');
           </h3>
           <p>Bắt đầu một hành trình mà mỗi cú nhấp chuột mở ra một cánh cửa dẫn đến những trải nghiệm mới. Nền tảng của chúng tôi biến hành động đặt phòng đơn thuần thành một cuộc phiêu lưu, làm cho mỗi lần lưu trú trở nên đặc biệt. Khám phá thế giới đầy tiềm năng, nơi mà chuyến đi hoàn hảo chỉ cách vài cú nhấp chuột. </p>
           <p> Hãy để lòng đam mê du lịch của bạn dẫn lối đến những điểm đến khó quên. Cho dù bạn đang tìm kiếm một kỳ nghỉ sang trọng, một homestay ấm cúng hay một nhà nghỉ tiết kiệm, chuyến đi lý tưởng của bạn đang chờ được khám phá.</p>
-          <button class="flex1">
+          <a href="hotels.php">
+            <button class="flex1">
             <span>I’m flexible</span>
             <i class="fas fa-arrow-circle-right"></i>
-          </button>
+          </button></a>
         </div>
         <div class="right">
           <img src="assets/img/a.png" alt="">
@@ -194,90 +198,44 @@ $locations = $db->select('locations');
       </div>
 
       <div class="content grid2 mtop">
-        <div class="box flex">
-          <div class="left">
-            <img src="assets/img/o1.jpg" alt="">
-          </div>
-          <div class="right">
-            <h4>Deluxe Room</h4>
-            <div class="rate flex">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <h5>From $50.6/night</h5>
-            <button class="flex1">
-              <span>Check Availability</span>
-              <i class="fas fa-arrow-circle-right"></i>
-            </button>
-          </div>
-        </div>
-        <div class="box flex">
-          <div class="left">
-            <img src="assets/img/o2.jpg" alt="">
-          </div>
-          <div class="right">
-            <h4>Deluxe Room</h4>
-            <div class="rate flex">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <h5>From $50.6/night</h5>
-            <button class="flex1">
-              <span>Check Availability</span>
-              <i class="fas fa-arrow-circle-right"></i>
-            </button>
-          </div>
-        </div>
-        <div class="box flex">
-          <div class="left">
-            <img src="assets/img/o3.jpg" alt="">
-          </div>
-          <div class="right">
-            <h4>Deluxe Room</h4>
-            <div class="rate flex">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <h5>From $50.6/night</h5>
-            <button class="flex1">
-              <span>Check Availability</span>
-              <i class="fas fa-arrow-circle-right"></i>
-            </button>
-          </div>
-        </div>
-        <div class="box flex">
-          <div class="left">
-            <img src="assets/img/o4.jpg" alt="">
-          </div>
-          <div class="right">
-            <h4>Deluxe Room</h4>
-            <div class="rate flex">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-            <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <h5>From $50.6/night</h5>
-            <button class="flex1">
-              <span>Check Availability</span>
-              <i class="fas fa-arrow-circle-right"></i>
-            </button>
-          </div>
-        </div>
+      <?php
+        if ($hotels) {
+            foreach ($hotels as $hotel) {
+                echo "<div class='box flex'>";
+                echo "<div class='left imgHotels'>";
+                echo "<img src='assets/upload/imgHotels/".$hotel['photo']."' alt=''>";
+                echo "</div>";
+                echo "<div class='right'>";
+                echo "<h4 class='titleHotel'>".$hotel['name']."</h4>";
+                echo "<div class='rate flex'>";
+                echo "<small style='color: black; margin-top: 10px;'><address>Địa chỉ: ".$hotel['address']."</address></small>";
+                echo "</div>";
+                echo "<div class='rate flex'>";
+                for ($i = 0; $i < 5; $i++) {
+                    if ($i < $hotel['stars']) {
+                        echo "<i class='fas fa-star'></i>";
+                    } else {
+                        echo "<i class='far fa-star'></i>";
+                    }
+                }
+                echo "</div>";
+                echo "<p>".$hotel['description']."</p>";
+                echo "<h5>From ".number_format($hotel['starting_price'])." VND/night</h5>";
+                echo "<a href='rooms.php?hotel_id=".$hotel['id']."'>";
+                echo "<button class='flex1'>";
+                echo "<span>Book</span>";
+                echo "<i class='fas fa-arrow-circle-right'></i>";
+                echo "</button>";
+                echo "</a>";
+                echo "</div>";
+                echo "</div>";
+            }
+        } else {
+            echo "<p>No hotels found.</p>";
+        }
+        ?>
+
+
       </div>
     </div>
   </section>
@@ -293,9 +251,17 @@ $locations = $db->select('locations');
 
       <div class="content grid  top">
         <div class="box">
-          <h5>UP TO 30% OFF</h5>
+          <h5>DISCOUNT 30% </h5>
           <h3>Hotel Name</h3>
-          <span>4.5 <label>(432 Reviews)</label> </span>
+          <span>
+            3.5 
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <i class="far fa-star"></i>
+            <label>(432 Reviews)</label>
+          </span>
           <p>Giảm giá sâu duy nhất</p>
           <div class="flex">
             <i class="fal fa-alarm-clock"> Thời gian áp dụng: 01/01/2022 - 31/12/2022</i>

@@ -27,7 +27,7 @@ session_start();
             <div class="sticky_logo logo">
                 <a href="index.php"><img src="assets/img/logo.png"></a>
             </div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" style="margin-bottom: 0;">
                 <li> <a href="hotels.php">Hotels</a> </li>
                 <li> <a href="owner/index.php">room booking</a> </li>
             </ul>

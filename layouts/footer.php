@@ -8,10 +8,10 @@
   <section class="map top">
   <?php
   
-    if(isset($toado)){
-      echo $toado;
+    if(isset($toado_value)){
+      echo $toado_value;
     }else{
-      echo '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3716.3427522178654!2d105.38285066579321!3d21.33697159232104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313493519a7ff667%3A0xdd0a564e4942f39d!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBIw7luZyBWxrDGoW5n!5e0!3m2!1svi!2s!4v1735882554993!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+      echo '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d475753.32564858376!2d104.80646478175734!3d21.318014837635506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31348379dd903cfb%3A0x30ec8de0c8c8646e!2zUGjDuiBUaOG7jSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1736748153906!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
     }
   ?>
   

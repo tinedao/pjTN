@@ -7,7 +7,7 @@ $dir_url = "";
             <div class="wrap-login100">
                 <!-- Hiển thị thông báo nếu có -->
                 
-                <form class="login100-form validate-form" action="action/login.php" method="post">
+                <form class="login100-form validate-form" action="action/login_action.php" method="post">
                 <a href="index.php"><img src="assets/img/logo.png" alt="logo" style="width: 100px; height: 100px; margin-left: 40%; border-radius: 50%; margin-bottom: 0px"></a>
                     <span class="login100-form-title p-b-43">
                         Login to continue

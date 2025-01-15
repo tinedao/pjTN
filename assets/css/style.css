@@ -30,7 +30,9 @@ a {
 .flex {
   display: flex;
 }
-
+.fa-star,.fa-star-half-alt{
+  color: #FFD700 !important;
+}
 .flex1 {
   display: flex;
   justify-content: space-between;
@@ -81,7 +83,6 @@ header {
   transition: all 0.5s ease-in-out;
   background: white;
 }
-
 .nav-menu {
   display: flex;
   justify-content: space-between;
@@ -112,10 +113,11 @@ header li {
   font-weight: 800;
 
 }
-
-.inforUser:hover span{
-  color: #000 !important;
+.inforUser span {
+  font-family: 'Roboto', sans-serif;
+  color: white;
   transition: 0.5s;
+  font-weight: bold;
 }
 
 .hoverUserInfor {
@@ -696,7 +698,7 @@ p {
 .offer .content h4 {
   font-size: 20px;
   color: #627795;
-  font-family: serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .offer .rate i {
