@@ -144,15 +144,11 @@ class Database {
     }
 
     // Xóa dữ liệu
-    public function delete($table, $id) {
-        $sql = "DELETE FROM $table WHERE id = $id";
+public function delete($table, $id) {
+    $sql = "DELETE FROM $table WHERE id = $id";
+    $this->conn->query($sql);
+}
 
-        if (!$this->conn->query($sql)) {
-            error_log("Delete query failed: " . $this->conn->error);
-            return false;
-        }
-        return true;
-    }
 
     public function __destruct() {
         $this->conn->close();

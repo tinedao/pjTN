@@ -2,13 +2,10 @@
 include '../../config/database.php';
 
 $db = new Database();
+
 $table = $_GET['table'];
 $id = $_GET['id'];
-
-if ($db->delete($table, $id)) {
-    header("location: ../index.php?alert=Xóa thành công!");
-    exit();
-} else {
-    header("location: ../index.php?alert=Xóa thất bại!&err=1");
-    exit();
-}
+$page = $_GET['page'];
+$db->delete($table, $id);
+$alert = "Xóa thành công!";
+header("location: ../$page.php?alert=" . urlencode($alert));

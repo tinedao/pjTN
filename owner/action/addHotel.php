@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name']; // Không cần escape, Prepared Statements sẽ xử lý
     $address = $_POST['address'];
     $description = $_POST['description'];
+    $coordinates = $_POST['coordinates'];
     $location_id = intval($_POST['location_id']);
     $owner_id = $db->select("owners", "email = '$_SESSION[email]'", 1)[0]['id'];
 
@@ -30,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "address" => $address,
             "photo" => $photo_name,
             "description" => $description,
+            "coordinates" => $coordinates,
             "location_id" => $location_id,
             "owner_id" => $owner_id,
             "status" => 0 // Mặc định là chưa xác thực

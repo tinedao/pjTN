@@ -1,5 +1,5 @@
 <?php if (isset($_GET['alert']) && $_GET['alert'] != '') : ?>
-    <div id="alert-box" class="alert <?php echo (isset($_GET['err']) && $_GET['err'] == 1) ? 'alert-danger' : 'alert-success'; ?>">
+    <div id="alert-box" style="text-align: center;z-index: 9999; position: fixed; top: 0; transition: 0.5s;width: 100%;" class="alert <?php echo (isset($_GET['err']) && $_GET['err'] == 1) ? 'alert-danger' : 'alert-success'; ?>">
         <?php echo htmlspecialchars($_GET['alert']); ?>
     </div>
 <?php endif; ?>
@@ -9,7 +9,7 @@
         if (alertBox) {
             alertBox.style.display = 'none';
         }
-    }, 5000);
+    },3000);
 </script>
 
 

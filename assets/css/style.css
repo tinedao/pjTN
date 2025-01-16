@@ -97,11 +97,6 @@ header li {
   margin-right: 30px;
 }
 
-.alert {
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
 
 .inforUser {
   cursor: pointer;

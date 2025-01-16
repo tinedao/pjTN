@@ -5,6 +5,7 @@ if (!isset($_SESSION['email'])) {
     header("location: login.php");
     exit();
 }
+
 $role = "owner";
 $page = "hotelManagement";
 include('../layouts/headerAd.php');
@@ -14,14 +15,37 @@ $owner = $owners[0];
 $owner_id = $owner['id'];
 
 // Truy vấn sử dụng view
-$hotel = $db->select("view_hotel_details", "owner_id = $owner_id");
-
+$hotel = $db->select("view_hotel_details", "owner_id = $owner_id", 1);
 ?>
+<style>
+    .row .col-md-6 {
+        margin-bottom: 1rem;
+    }
+    .form-select{
+        padding: 5px;
+        border-radius: 15px;
+    }
 
+    .card img{
+        height: 350px !important;
+    }
+    .card-footer a{
+        width: 40%;
+        padding: 5px;
+    }
+    .map iframe{
+        width: 100%;
+        height: 500px;
+    }
+</style>
 <!-- Form Thêm Khách Sạn -->
-<div class="card shadow p-4 mb-4">
+<?php
+if($hotel == null){
+    ?>
+    <div class="card shadow p-4 mb-4">
     <h4 class="card-title mb-3">Thêm Khách Sạn Mới</h4>
     <form action="action/addHotel.php" method="POST" enctype="multipart/form-data">
+        <input type="text" name="hotel_id" value="<?php echo $hotel_id; ?>" hidden>
         <div class="row g-3">
             <div class="col-md-6">
                 <label for="name" class="form-label">Tên Khách Sạn</label>
@@ -32,11 +56,15 @@ $hotel = $db->select("view_hotel_details", "owner_id = $owner_id");
                 <input type="text" name="address" id="address" class="form-control" required>
             </div>
             <div class="col-md-6">
+                <label for="address" class="form-label">Tọa độ google</label>
+                <input type="text" placeholder="vào google map rồi chọn địa chỉ khách sạn, bấm chia sẻ -> nhúng bản đồ và sao chép HTML" name="coordinates" id="address" class="form-control" required>
+            </div>
+            <div class="col-md-6">
                 <label for="photo" class="form-label">Ảnh</label>
                 <input type="file" name="photo" id="photo" class="form-control" accept="image/*" required>
             </div>
             <div class="col-md-6">
-                <label for="location_id" class="form-label">Địa Điểm</label>
+                <label for="location_id" class="form-label w-100">Địa Điểm</label>
                 <select name="location_id" id="location_id" class="form-select" required>
                     <?php
                     // Lấy danh sách địa điểm
@@ -57,47 +85,64 @@ $hotel = $db->select("view_hotel_details", "owner_id = $owner_id");
         </div>
     </form>
 </div>
+    <?php
+}
 
+?>
 
 <!-- Bảng Hiển Thị -->
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Address</th>
-            <th scope="col">Star</th>
-            <th scope="col">Photo</th>
-            <th scope="col">Description</th>
-            <th scope="col">Location</th>
-            <th scope="col">Status</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="container">
+<div class="row g-4">
     <?php
     foreach ($hotel as $h) {
-        echo "<tr>";
-        echo "<td>" . $h['name'] . "</td>";
-        echo "<td>" . $h['address'] . "</td>";
-        echo "<td>";
-        for ($i = 0; $i < $h['stars']; $i++) {
-            echo "<i class='fa fa-star text-warning'></i>"; // Hiển thị sao màu vàng
-        }
-        echo "</td>";
-        echo "<td><img src='../assets/upload/imgHotels/" . $h['photo'] . "' alt='Hotel Image' class='img-thumbnail' style='width: 100px; height: auto;'></td>";
-        echo "<td>" . $h['description'] . "</td>";
-        echo "<td>" . $h['location_name'] . "</td>"; // Hiển thị tên địa điểm từ view
-        echo "<td>" . ($h['status'] == 1 ? "<span class='badge bg-success'>Đã xác thực</span>" : "<span class='badge bg-danger'>Chưa xác thực</span>") . "</td>";
-        echo "<td>
-                <a href='editHotel.php?id=" . $h['id'] . "&table=hotels' class='btn btn-primary btn-sm'>Edit</a> 
-                <a href='action/delete.php?id=" . $h['id'] . "&table=hotels' class='btn btn-danger btn-sm'>Delete</a>
-              </td>";
-        echo "</tr>";
+        ?>
+        <div class="w-75">
+            <div class="card shadow-sm h-100">
+                <img src="../assets/upload/imgHotels/<?php echo $h['photo']; ?>" class="card-img-top" alt="Hotel Image" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title"><b>Name:</b>  <?php echo $h['name']; ?></h5>
+                    <p class="card-text mb-1"><strong>Address:</strong> <?php echo $h['address']; ?></p>
+                    <p class="card-text mb-1"><strong>Location:</strong> <?php echo $h['location_name']; ?></p>
+                    <p class="card-text">
+                        <strong>Star Rating:</strong>
+                        <?php
+                        for ($i = 0; $i < $h['stars']; $i++) {
+                            echo "<i class='fa fa-star text-warning'></i>";
+                        }
+                        ?>
+                    </p>
+                    <p class="card-text mb-2"><strong>Description:</strong> <?php echo $h['description']; ?></p>
+                    <p class="card-text">
+                        <strong>Status:</strong> 
+                        <?php echo $h['status'] == 1 
+                            ? "<span class='badge bg-success'>Đã xác thực</span>" 
+                            : "<span class='badge bg-danger'>Chưa xác thực</span>"; ?>
+                    </p>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="editHotel.php?id=<?php echo $h['id']; ?>&table=hotels" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="action/delete.php?page=index&id=<?php echo $h['id']; ?>&table=hotels" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </div>
+        </div>
+        
+        <?php
+        
     }
     ?>
-    </tbody>
-</table>
+</div>
+</div>
+
+
+<div class="map">
+    <?php
+if (isset($h)) {
+    echo $h['coordinates'] ;
+}
+    ?>
+</div>
 
 <?php
+
 include('../layouts/footerAd.php');
 ?>

@@ -21,4 +21,4 @@
 
 </head>
 <body>
-<?php include_once 'layouts/alert.php';
+<?php include 'layouts/alert.php';
