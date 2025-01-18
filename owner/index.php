@@ -75,6 +75,18 @@ if($hotel == null){
                     ?>
                 </select>
             </div>
+            <div class="col-md-6">
+                <label for="hotel_type_id" class="form-label w-100">Loại Khách Sạn</label>
+                <select name="hotel_type_id" id="hotel_type_id" class="form-select" required>
+                    <?php
+                    // Lấy danh sách loại khách sạn
+                    $hotelTypes = $db->select("hotel_types");
+                    foreach ($hotelTypes as $hotelType) {
+                        echo "<option value='" . $hotelType['id'] . "'>" . $hotelType['name'] . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
             <div class="col-12">
                 <label for="description" class="form-label">Mô Tả</label>
                 <textarea name="description" id="description" class="form-control" rows="4" required></textarea>

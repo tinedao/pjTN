@@ -20,7 +20,7 @@ $bed_count = $_POST['bed_count']; // Số giường
 // Xử lý ảnh
 $photo_url = "";
 if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
-    $photo_url = $db->uploadImage($_FILES['photo'], "../assets/upload/imgTypeRooms/", $alert);
+    $photo_url = $db->uploadImage($_FILES['photo'], "../../assets/upload/imgTypeRooms/", $alert);
 }
 
 // Thêm loại phòng vào bảng room_types
@@ -37,9 +37,11 @@ if ($photo_url !== "") {
     $insert_room_type = $db->insert("room_types", $data);
 
     if ($insert_room_type) {
-        echo "Thêm loại phòng thành công!";
+        $alert = "Thêm loại phòng thành công!";
+        header("location: ../typeRoom.php?alert=" . urlencode($alert));
     } else {
-        echo "Thêm loại phòng thất bại!";
+        $alert = "Có lỗi xảy ra khi thêm loại phòng.";
+        header("location: ../typeRoom.php?err=1&alert=" . urlencode($alert));
     }
 }
 ?>

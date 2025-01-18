@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = $_POST['description'];
     $coordinates = $_POST['coordinates'];
     $location_id = intval($_POST['location_id']);
+    $hotel_type_id = intval($_POST['hotel_type_id']);
     $owner_id = $db->select("owners", "email = '$_SESSION[email]'", 1)[0]['id'];
 
     // Xử lý ảnh với hàm uploadImage
@@ -31,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "address" => $address,
             "photo" => $photo_name,
             "description" => $description,
+            "hotel_type_id" => $hotel_type_id,
             "coordinates" => $coordinates,
             "location_id" => $location_id,
             "owner_id" => $owner_id,
