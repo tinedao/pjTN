@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -9,7 +8,10 @@
 
 html,
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:"wdth" 100;
   scroll-behavior: smooth;
 }
 
@@ -199,7 +201,6 @@ header.sticky .sticky_logo {
   height: 50px;
   padding-top: 10px;
 }
-
 header .sticky_infor {
   display: block;
 
@@ -211,7 +212,7 @@ header.sticky {
   width: 100%;
   background: #313538;
   transition: 0.5s;
-  height: 8vh;
+  height: 10vh;
   transition: 0.5s;
   top: 0;
   padding: 15px 0 0 0;
@@ -307,7 +308,7 @@ header.sticky ul li a {
 }
 
 .home {
-  background-image: url("../img/home.png");
+  background-image: url("../img/doiche.webp");
   height: 100vh;
   background-attachment: fixed;
   background-position: center;
@@ -636,7 +637,7 @@ p {
 }
 
 .timer.wrapper {
-  background-image: url("../img/w2.jpg");
+  background-image: url("../img/ruong.webp");
 }
 
 .timer.about::after {

@@ -27,9 +27,10 @@ class Database {
         
         // Chuẩn bị placeholders `?` cho Prepared Statement
         $placeholders = implode(", ", array_fill(0, count($data), "?"));
-        
+       
         $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
-        
+        // var_dump($sql);
+        // exit();
         // Chuẩn bị câu lệnh SQL
         $stmt = $this->conn->prepare($sql);
         if (!$stmt) {
@@ -37,20 +38,11 @@ class Database {
             return false;
         }
         
-        // Gắn kiểu dữ liệu và giá trị vào câu lệnh Prepared Statement
-        $types = ""; // Chuỗi kiểu dữ liệu: 's' (string), 'i' (integer), 'd' (double), 'b' (blob)
+        // Xác định kiểu dữ liệu và giá trị
+        $types = ""; 
         $values = [];
-        foreach ($data as $key => $value) {
-            if (is_int($value)) {
-                $types .= "i";
-            } elseif (is_float($value)) {
-                $types .= "d";
-            } elseif (is_null($value)) {
-                $types .= "s"; // NULL được xử lý như string
-                $value = null;
-            } else {
-                $types .= "s";
-            }
+        foreach ($data as $value) {
+            $types .= $this->getType($value); // Xác định kiểu dữ liệu
             $values[] = $value;
         }
         
@@ -64,24 +56,64 @@ class Database {
         }
         
         return true;
-    }
-    
+    }  
 
     // Cập nhật dữ liệu trong bảng
     public function update($table, $id, $data) {
         $set = "";
+        $types = "";
+        $values = [];
+        
+        // Chuẩn bị các cột và giá trị
         foreach ($data as $column => $value) {
-            $set .= "$column = '" . $this->conn->real_escape_string($value) . "', ";
+            $set .= "$column = ?, ";
+            $types .= $this->getType($value); // Xác định kiểu dữ liệu
+            $values[] = $value;
         }
+    
+        // Loại bỏ dấu ", " cuối cùng
         $set = rtrim($set, ", ");
-        $sql = "UPDATE $table SET $set WHERE id = $id";
-
-        if (!$this->conn->query($sql)) {
-            error_log("Update query failed: " . $this->conn->error);
+        
+        // Câu lệnh SQL
+        $sql = "UPDATE $table SET $set WHERE id = ?";
+        $types .= "i"; // Thêm kiểu dữ liệu cho ID (int)
+    
+        // Thêm ID vào cuối mảng values
+        $values[] = $id;
+    
+        // Chuẩn bị câu lệnh SQL
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt) {
+            error_log("Failed to prepare statement: " . $this->conn->error);
             return false;
         }
+    
+        // Gắn dữ liệu vào câu lệnh Prepared Statement
+        $stmt->bind_param($types, ...$values);
+    
+        // Thực thi câu lệnh
+        if (!$stmt->execute()) {
+            error_log("Update query failed: " . $stmt->error);
+            return false;
+        }
+    
         return true;
     }
+    
+    // Hàm để xác định kiểu dữ liệu cho từng giá trị
+    private function getType($value) {
+        if (is_int($value)) {
+            return "i"; // Integer
+        } elseif (is_float($value)) {
+            return "d"; // Double
+        } elseif (is_string($value)) {
+            return "s"; // String
+        } elseif (is_null($value)) {
+            return "s"; // Null xử lý như chuỗi
+        }
+        return "s"; // Mặc định là String
+    }
+    
 
     // Lấy dữ liệu theo ID
     public function getById($table, $id) {
@@ -96,23 +128,30 @@ class Database {
     }
 
     // Truy vấn SELECT với điều kiện và giới hạn
-    public function select($table, $condition = "", $limit = "") {
-        $sql = "SELECT * FROM $table";
-        if (!empty($condition)) {
-            $sql .= " WHERE $condition";
-        }
-        if (!empty($limit)) {
-            $sql .= " LIMIT $limit";
-        }
-
-        $result = $this->conn->query($sql);
-
-        if ($result === false) {
-            error_log("Select query failed: " . $this->conn->error);
-            return [];
-        }
-        return $result->fetch_all(MYSQLI_ASSOC);
+    // Truy vấn SELECT với điều kiện và giới hạn
+public function select($table, $condition = "", $limit = "") {
+    $sql = "SELECT * FROM $table";
+    
+    if (!empty($condition)) {
+        $sql .= " WHERE $condition";
     }
+    
+    if (!empty($limit)) {
+        $sql .= " LIMIT $limit";
+    }
+
+    // In câu SQL để kiểm tra
+    error_log("SQL Query: " . $sql);
+
+    $result = $this->conn->query($sql);
+
+    if ($result === false) {
+        error_log("Select query failed: " . $this->conn->error);
+        return [];
+    }
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
 
     // Hàm tải lên ảnh
     public function uploadImage($file, $target_dir, &$alert) {

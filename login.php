@@ -1,7 +1,7 @@
 <?php
-$err = 0;
 $dir_url = "";
     include('layouts/headerLogin.php');
+    include('layouts/alert.php')
 ?>
         <div class="container-login100">
             <div class="wrap-login100">

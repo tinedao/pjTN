@@ -46,6 +46,7 @@ if($hotel == null){
     <h4 class="card-title mb-3">Thêm Khách Sạn Mới</h4>
     <form action="action/addHotel.php" method="POST" enctype="multipart/form-data">
         <input type="text" name="hotel_id" value="<?php echo $hotel_id; ?>" hidden>
+        <input type="hidden" name="action" value="add">
         <div class="row g-3">
             <div class="col-md-6">
                 <label for="name" class="form-label">Tên Khách Sạn</label>
@@ -128,7 +129,7 @@ if($hotel == null){
                         <strong>Status:</strong> 
                         <?php echo $h['status'] == 1 
                             ? "<span class='badge bg-success'>Đã xác thực</span>" 
-                            : "<span class='badge bg-danger'>Chưa xác thực</span>"; ?>
+                            : "<span class='badge bg-danger'>Chưa xác thực</span> <br>     <span class='text-danger'>Hãy liên hệ với quản trị viên để được xác thực</span>"; ?>
                     </p>
                 </div>
                 <div class="card-footer d-flex justify-content-between">

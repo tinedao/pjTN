@@ -38,9 +38,10 @@ if($hotel != null):
 <!-- Form Thêm Loại Phòng -->
 <div class="card shadow p-4 mb-4">
     <h4 class="card-title mb-3">Thêm Loại Phòng Mới</h4>
-    <form action="action/addRoomType.php" method="POST" enctype="multipart/form-data">
+    <form action="action/RoomType_handle.php" method="POST" enctype="multipart/form-data">
         <div class="row g-3">
-            <input type="text" name="hotel_id" value="<?php echo $hotel[0]['id']; ?>" hidden>
+        <input type="text" name="action" value="add" hidden>    
+        <input type="text" name="hotel_id" value="<?php echo $hotel[0]['id']; ?>" hidden>
             <div class="col-md-6">
                 <label for="name" class="form-label">Tên Loại Phòng</label>
                 <input type="text" name="name" id="name" class="form-control" required>
@@ -112,8 +113,10 @@ if($hotel != null):
 <?php
 else:
 ?>
+<div class="container">
 <h1>BẠN CẦN CÓ LOẠI KINH DOANH TRƯỚC</h1>
 <a href="index.php">Bấm vào để thêm</a>
+</div>
 <?php
 endif;
 include('../layouts/footerAd.php');

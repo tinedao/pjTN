@@ -1,49 +1,57 @@
+<style>
+  .gallary .owl-carousel .owl-item img {
+    width: 100%; /* Đặt kích thước mong muốn */
+    height: 300px; /* Giữ tỷ lệ ảnh nguyên vẹn */
+    object-fit: cover;
+}
+
+</style>
 <section class="gallary top" id="gallary">
     <div class="owl-carousel owl-theme">
       <div class="item">
-        <img src="assets/img/g1.jpg" alt="">
+        <img src="assets/img/s1.jpg" alt="">
         <div class="overlay">
           <i class="fab fa-instagram"></i>
         </div>
       </div>
       <div class="item">
-        <img src="assets/img/g2.jpg" alt="">
+        <img src="assets/img/s2.jpg" alt="">
         <div class="overlay">
           <i class="fab fa-instagram"></i>
         </div>
       </div>
       <div class="item">
-        <img src="assets/img/g3.jpg" alt="">
+        <img src="assets/img/s3.jpg" alt="">
         <div class="overlay">
           <i class="fab fa-instagram"></i>
         </div>
       </div>
       <div class="item">
-        <img src="assets/img/g4.jpg" alt="">
+        <img src="assets/img/s4.jpg" alt="">
         <div class="overlay">
           <i class="fab fa-instagram"></i>
         </div>
       </div>
       <div class="item">
-        <img src="assets/img/g5.jpg" alt="">
+        <img src="assets/img/s5.jpg" alt="">
         <div class="overlay">
           <i class="fab fa-instagram"></i>
         </div>
       </div>
       <div class="item">
-        <img src="assets/img/g1.jpg" alt="">
+        <img src="assets/img/s6.jpg" alt="">
         <div class="overlay">
           <i class="fab fa-instagram"></i>
         </div>
       </div>
       <div class="item">
-        <img src="assets/img/g2.jpg" alt="">
+        <img src="assets/img/s7.jpg" alt="">
         <div class="overlay">
           <i class="fab fa-instagram"></i>
         </div>
       </div>
       <div class="item">
-        <img src="assets/img/g3.jpg" alt="">
+        <img src="assets/img/s8.jpg" alt="">
         <div class="overlay">
           <i class="fab fa-instagram"></i>
         </div>

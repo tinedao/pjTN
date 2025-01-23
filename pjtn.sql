@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 16, 2025 lúc 07:56 PM
--- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.0.30
+-- Host: 127.0.0.1
+-- Generation Time: Jan 23, 2025 at 09:42 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `pjtn`
+-- Database: `pjtn`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -33,7 +33,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`username`, `password`) VALUES
@@ -42,7 +42,7 @@ INSERT INTO `admin` (`username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `bookings`
+-- Table structure for table `bookings`
 --
 
 CREATE TABLE `bookings` (
@@ -60,7 +60,7 @@ CREATE TABLE `bookings` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hotels`
+-- Table structure for table `hotels`
 --
 
 CREATE TABLE `hotels` (
@@ -78,10 +78,17 @@ CREATE TABLE `hotels` (
   `status` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `hotels`
+--
+
+INSERT INTO `hotels` (`id`, `owner_id`, `name`, `address`, `photo`, `stars`, `coordinates`, `description`, `starting_price`, `location_id`, `hotel_type_id`, `status`) VALUES
+(13, 3, 'Khách sạn Phú Thọ - Sài Gòn', 'Châu Phong', '654fe6d7b4250cb42f33eec4ea961a43.jpg', NULL, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3716.765930633168!2d105.39871297596939!3d21.32026338040293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31348d5162acb801%3A0x80cf111220ae974f!2zS2jDoWNoIHPhuqFuIFPDoGkgR8OybiAtIFBow7ogVGjhu40gKFNhaWdvbnRvdXJpc3QgR3JvdXAp!5e0!3m2!1svi!2s!4v1737440610096!5m2!1svi!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 'trên cả tuyệt vời ngọt như nước suối', 200000.00, 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hotel_types`
+-- Table structure for table `hotel_types`
 --
 
 CREATE TABLE `hotel_types` (
@@ -90,7 +97,7 @@ CREATE TABLE `hotel_types` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `hotel_types`
+-- Dumping data for table `hotel_types`
 --
 
 INSERT INTO `hotel_types` (`id`, `name`) VALUES
@@ -101,7 +108,7 @@ INSERT INTO `hotel_types` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `locations`
+-- Table structure for table `locations`
 --
 
 CREATE TABLE `locations` (
@@ -111,7 +118,7 @@ CREATE TABLE `locations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `locations`
+-- Dumping data for table `locations`
 --
 
 INSERT INTO `locations` (`id`, `name`, `toado`) VALUES
@@ -132,7 +139,7 @@ INSERT INTO `locations` (`id`, `name`, `toado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `owners`
+-- Table structure for table `owners`
 --
 
 CREATE TABLE `owners` (
@@ -145,7 +152,7 @@ CREATE TABLE `owners` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `owners`
+-- Dumping data for table `owners`
 --
 
 INSERT INTO `owners` (`id`, `username`, `password`, `status`, `email`, `phone`) VALUES
@@ -154,7 +161,7 @@ INSERT INTO `owners` (`id`, `username`, `password`, `status`, `email`, `phone`) 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `reviews`
+-- Table structure for table `reviews`
 --
 
 CREATE TABLE `reviews` (
@@ -167,7 +174,7 @@ CREATE TABLE `reviews` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Bẫy `reviews`
+-- Triggers `reviews`
 --
 DELIMITER $$
 CREATE TRIGGER `update_hotel_stars` AFTER INSERT ON `reviews` FOR EACH ROW BEGIN
@@ -189,7 +196,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `rooms`
+-- Table structure for table `rooms`
 --
 
 CREATE TABLE `rooms` (
@@ -197,11 +204,11 @@ CREATE TABLE `rooms` (
   `hotel_id` int(11) DEFAULT NULL,
   `type_id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL
+  `status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Bẫy `rooms`
+-- Triggers `rooms`
 --
 DELIMITER $$
 CREATE TRIGGER `update_starting_price_rooms` AFTER INSERT ON `rooms` FOR EACH ROW BEGIN
@@ -239,7 +246,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `room_types`
+-- Table structure for table `room_types`
 --
 
 CREATE TABLE `room_types` (
@@ -253,7 +260,14 @@ CREATE TABLE `room_types` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Bẫy `room_types`
+-- Dumping data for table `room_types`
+--
+
+INSERT INTO `room_types` (`id`, `hotel_id`, `name`, `photo_url`, `description`, `price`, `bed_count`) VALUES
+(5, 13, 'Luxury', 'bbf3c9f83d6cf343dbedd00fad03117b.jpg', 'okelahaha\r\n', 200000.00, 4);
+
+--
+-- Triggers `room_types`
 --
 DELIMITER $$
 CREATE TRIGGER `update_starting_price` AFTER INSERT ON `room_types` FOR EACH ROW BEGIN
@@ -275,7 +289,22 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `subscribe_newsletter`
+-- Stand-in structure for view `room_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `room_view` (
+`room_id` int(11)
+,`room_name` varchar(255)
+,`room_image` varchar(255)
+,`room_price` decimal(10,2)
+,`room_status` varchar(9)
+,`room_description` text
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscribe_newsletter`
 --
 
 CREATE TABLE `subscribe_newsletter` (
@@ -287,7 +316,7 @@ CREATE TABLE `subscribe_newsletter` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -300,7 +329,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `password`, `profile_picture`, `email`, `phone_number`) VALUES
@@ -309,7 +338,7 @@ INSERT INTO `users` (`id`, `name`, `password`, `profile_picture`, `email`, `phon
 -- --------------------------------------------------------
 
 --
--- Cấu trúc đóng vai cho view `view_hotel_details`
+-- Stand-in structure for view `view_hotel_details`
 -- (See below for the actual view)
 --
 CREATE TABLE `view_hotel_details` (
@@ -331,38 +360,74 @@ CREATE TABLE `view_hotel_details` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `vouchers`
+-- Table structure for table `vouchers`
 --
 
 CREATE TABLE `vouchers` (
   `id` int(11) NOT NULL,
   `code` varchar(255) DEFAULT NULL,
   `discount` decimal(10,2) DEFAULT NULL,
-  `expiry_date` date DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `start_date` date NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `hotel_id` int(11) NOT NULL,
+  `end_date` date NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Triggers `vouchers`
+--
+DELIMITER $$
+CREATE TRIGGER `update_voucher_status_on_insert` BEFORE INSERT ON `vouchers` FOR EACH ROW BEGIN
+    IF (NEW.start_date <= CURDATE() AND NEW.end_date >= CURDATE()) THEN
+        SET NEW.status = 1; -- Kích hoạt nếu trong khoảng thời gian hợp lệ
+    ELSE
+        SET NEW.status = 0; -- Không kích hoạt
+    END IF;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `update_voucher_status_on_update` BEFORE UPDATE ON `vouchers` FOR EACH ROW BEGIN
+    IF (NEW.start_date <= CURDATE() AND NEW.end_date >= CURDATE()) THEN
+        SET NEW.status = 1; -- Kích hoạt nếu trong khoảng thời gian hợp lệ
+    ELSE
+        SET NEW.status = 0; -- Không kích hoạt
+    END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc cho view `view_hotel_details`
+-- Structure for view `room_view`
+--
+DROP TABLE IF EXISTS `room_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `room_view`  AS SELECT `r`.`id` AS `room_id`, `r`.`name` AS `room_name`, `rt`.`photo_url` AS `room_image`, `rt`.`price` AS `room_price`, CASE WHEN exists(select 1 from `bookings` `b` where `b`.`room_id` = `r`.`id` AND curdate() between `b`.`check_in_date` and `b`.`check_out_date` AND `b`.`status` = 1 limit 1) THEN 'Đang thuê' ELSE 'Sẵn sàng' END AS `room_status`, `rt`.`description` AS `room_description` FROM (`rooms` `r` left join `room_types` `rt` on(`r`.`type_id` = `rt`.`id`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_hotel_details`
 --
 DROP TABLE IF EXISTS `view_hotel_details`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_hotel_details`  AS SELECT `hotels`.`id` AS `id`, `hotels`.`owner_id` AS `owner_id`, `hotels`.`name` AS `name`, `hotels`.`address` AS `address`, `hotels`.`photo` AS `photo`, `hotels`.`stars` AS `stars`, `hotels`.`coordinates` AS `coordinates`, `hotels`.`description` AS `description`, `hotels`.`starting_price` AS `starting_price`, `hotels`.`location_id` AS `location_id`, `hotels`.`hotel_type_id` AS `hotel_type_id`, `hotels`.`status` AS `status`, `locations`.`name` AS `location_name` FROM (`hotels` left join `locations` on(`hotels`.`location_id` = `locations`.`id`)) ;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`username`);
 
 --
--- Chỉ mục cho bảng `bookings`
+-- Indexes for table `bookings`
 --
 ALTER TABLE `bookings`
   ADD PRIMARY KEY (`id`),
@@ -371,7 +436,7 @@ ALTER TABLE `bookings`
   ADD KEY `fk_bookings_hotel` (`hotel_id`);
 
 --
--- Chỉ mục cho bảng `hotels`
+-- Indexes for table `hotels`
 --
 ALTER TABLE `hotels`
   ADD PRIMARY KEY (`id`),
@@ -380,25 +445,25 @@ ALTER TABLE `hotels`
   ADD KEY `fk_hotel_type_id` (`hotel_type_id`);
 
 --
--- Chỉ mục cho bảng `hotel_types`
+-- Indexes for table `hotel_types`
 --
 ALTER TABLE `hotel_types`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `locations`
+-- Indexes for table `locations`
 --
 ALTER TABLE `locations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `owners`
+-- Indexes for table `owners`
 --
 ALTER TABLE `owners`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `reviews`
+-- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`),
@@ -406,7 +471,7 @@ ALTER TABLE `reviews`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Chỉ mục cho bảng `rooms`
+-- Indexes for table `rooms`
 --
 ALTER TABLE `rooms`
   ADD PRIMARY KEY (`id`),
@@ -414,139 +479,146 @@ ALTER TABLE `rooms`
   ADD KEY `type_id` (`type_id`);
 
 --
--- Chỉ mục cho bảng `room_types`
+-- Indexes for table `room_types`
 --
 ALTER TABLE `room_types`
   ADD PRIMARY KEY (`id`),
   ADD KEY `hotel_id` (`hotel_id`);
 
 --
--- Chỉ mục cho bảng `subscribe_newsletter`
+-- Indexes for table `subscribe_newsletter`
 --
 ALTER TABLE `subscribe_newsletter`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `vouchers`
+-- Indexes for table `vouchers`
 --
 ALTER TABLE `vouchers`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_vouchers_hotel_id` (`hotel_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `bookings`
+-- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `hotels`
+-- AUTO_INCREMENT for table `hotels`
 --
 ALTER TABLE `hotels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT cho bảng `hotel_types`
+-- AUTO_INCREMENT for table `hotel_types`
 --
 ALTER TABLE `hotel_types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `locations`
+-- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT cho bảng `owners`
+-- AUTO_INCREMENT for table `owners`
 --
 ALTER TABLE `owners`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `reviews`
+-- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `rooms`
+-- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `room_types`
+-- AUTO_INCREMENT for table `room_types`
 --
 ALTER TABLE `room_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `subscribe_newsletter`
+-- AUTO_INCREMENT for table `subscribe_newsletter`
 --
 ALTER TABLE `subscribe_newsletter`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `vouchers`
+-- AUTO_INCREMENT for table `vouchers`
 --
 ALTER TABLE `vouchers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `bookings`
+-- Constraints for table `bookings`
 --
 ALTER TABLE `bookings`
-  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`),
+  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_bookings_hotel` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `hotels`
+-- Constraints for table `hotels`
 --
 ALTER TABLE `hotels`
   ADD CONSTRAINT `fk_hotel_type_id` FOREIGN KEY (`hotel_type_id`) REFERENCES `hotel_types` (`id`),
   ADD CONSTRAINT `fk_location_id` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`),
-  ADD CONSTRAINT `hotels_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `owners` (`id`);
+  ADD CONSTRAINT `hotels_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `owners` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `reviews`
+-- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
   ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `rooms`
+-- Constraints for table `rooms`
 --
 ALTER TABLE `rooms`
-  ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`),
-  ADD CONSTRAINT `rooms_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `room_types` (`id`);
+  ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rooms_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `room_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `room_types`
+-- Constraints for table `room_types`
 --
 ALTER TABLE `room_types`
-  ADD CONSTRAINT `room_types_ibfk_1` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`);
+  ADD CONSTRAINT `room_types_ibfk_1` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `vouchers`
+--
+ALTER TABLE `vouchers`
+  ADD CONSTRAINT `fk_vouchers_hotel_id` FOREIGN KEY (`hotel_id`) REFERENCES `hotels` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
