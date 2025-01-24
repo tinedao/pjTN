@@ -28,6 +28,7 @@ session_start();
                 <a href="index.php"><img src="assets/img/logo.png"></a>
             </div>
             <ul class="nav-menu" style="margin-bottom: 0;">
+                <li> <a href="index.php">Home</a> </li>
                 <li> <a href="hotels.php">Hotels</a> </li>
                 <li> <a href="voucher.php">Voucher</a> </li>
                 <li> <a href="owner/index.php">Owner</a> </li>

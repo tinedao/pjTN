@@ -19,8 +19,14 @@ class Database {
 
         // Đặt bộ mã ký tự UTF-8
         $this->conn->set_charset("utf8mb4");
+        //tu dong update voucher
+        $this->conn->query("UPDATE vouchers
+SET status = CASE
+    WHEN start_date <= CURDATE() AND end_date >= CURDATE() THEN 1
+    ELSE 0
+END;");
     }
-
+    
     // Thêm dữ liệu vào bảng
     public function insert($table, $data) {
         $columns = implode(", ", array_keys($data));
@@ -188,8 +194,9 @@ public function delete($table, $id) {
     $this->conn->query($sql);
 }
 
-
+    
     public function __destruct() {
         $this->conn->close();
     }
+
 }

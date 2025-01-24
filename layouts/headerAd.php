@@ -132,7 +132,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php $url_dir ?>discount.php" class="nav-link <?php if($page == "discount") echo "active"; ?>">
+            <a href="<?php $url_dir ?>voucher.php" class="nav-link <?php if($page == "discount") echo "active"; ?>">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Discount
