@@ -19,12 +19,18 @@ body {
   position: absolute;
   bottom: -60px;
   left: 48%;
-  border-radius: 20px;
+  border-radius: 25px;
   background-color: white;
-  border: 1px solid white;
-  padding: 10px;
+  border: 1px solid black;
+  padding: 10px 20px;
+  transition: 0.5s;
 }
-.more a{
+.more:hover{
+  background-color: #CC8C18;
+  color: white;
+  border: 1px solid white;
+}
+.content a {
   color: #000;
 }
 
@@ -393,6 +399,9 @@ button span {
   margin-top: 40px;
 }
 
+.timeV{
+  margin-top: 10px !important;
+}
 .heading {
   text-align: center;
 }
@@ -937,14 +946,17 @@ p {
 }
 
 .blog img {
-  width: 100%;
+  width: auto;
   height: 100%;
   position: relative;
 }
 
 .blog .img {
+  object-fit: cover;
   position: relative;
   overflow: hidden;
+  height: 371.92px;
+  width: 530px;
 }
 
 .blog span {

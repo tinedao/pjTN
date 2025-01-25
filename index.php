@@ -101,14 +101,14 @@ $vouchers  = $db->select('hotel_voucher_info','',8);
 
         <div class="content grid mtop">
             <div class="box">
-                <div class="img">
-                    <img src="assets/img/b1.jpg" alt="">
-                    <span>HOTEL</span>
+                <div class="img" >
+                    <img src="assets/img/s2.jpg" alt="">
+                    <span>TRAVEL</span>
                 </div>
                 <div class="text">
-                    <h3>Lonavla</h3>
-                    <p>69 kilometres away</p>
-                    <a href="#">Read More <i class='far fa-long-arrow-alt-right'></i> </a>
+                    <h3>Đền Hùng</h3>
+                    <p>Lạc Hồng, Hy Cương, Việt Trì, Phú Thọ 290000, Việt Nam</p>
+                    <a href="hotels.php?locations=1">Read More <i class='far fa-long-arrow-alt-right'></i> </a>
                 </div>
             </div>
             <div class="box">
@@ -117,7 +117,7 @@ $vouchers  = $db->select('hotel_voucher_info','',8);
                     <span>HOTEL</span>
                 </div>
                 <div class="text">
-                    <h3>Alibagh</h3>
+                    <h3>Đảo ngọc xanh</h3>
                     <p>37 kilometres away</p>
                     <a href="#">Read More <i class='far fa-long-arrow-alt-right'></i> </a>
                 </div>
@@ -237,9 +237,11 @@ $('#time').countdown('2024/01/01', function(event) {
         }
         ?>
 
+        <a href="hotels.php">
             <div class="more">
-                <a href="hotels.php">Bấm để xem thêm</a>
+                <span>Xem thêm</span>
             </div>
+        </a>
         </div>
     </div>
 </section>
@@ -270,7 +272,7 @@ $('#time').countdown('2024/01/01', function(event) {
                   echo '<label>(' . $voucher['review_count'] . ' Reviews)</label>';
                   echo '</span>';
                   // Hiển thị thời gian áp dụng voucher
-                  echo '<div class="flex">';
+                  echo '<div class="flex timeV">';
                   echo '<i class="fal fa-alarm-clock"> Thời gian áp dụng: ' . htmlspecialchars($voucher['voucher_start_date']) . ' - ' . htmlspecialchars($voucher['voucher_end_date']) . '</i>';
                   echo '</div>';
                   // Bọc button trong thẻ <a> để chuyển hướng tới trang hotels
@@ -283,9 +285,11 @@ $('#time').countdown('2024/01/01', function(event) {
                   echo '</div>';
               }
 ?>
-        <div class="more">
-          <a href="vouchers.php">Xem thêm voucher</a>
-        </div>
+        <a href="voucher.php">
+            <div class="more">
+                <span>Xem thêm</span>
+            </div>
+        </a>
         </div>
     </div>
 </section>
