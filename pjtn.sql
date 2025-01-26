@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2025 at 09:42 AM
+-- Generation Time: Jan 26, 2025 at 06:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -104,6 +104,23 @@ INSERT INTO `hotel_types` (`id`, `name`) VALUES
 (1, 'Khách sạn'),
 (2, 'Homestay'),
 (3, 'Nhà nghỉ');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `hotel_voucher_info`
+-- (See below for the actual view)
+--
+CREATE TABLE `hotel_voucher_info` (
+`hotel_id` int(11)
+,`hotel_name` varchar(255)
+,`stars` int(11)
+,`review_count` bigint(21)
+,`code` varchar(255)
+,`discount` decimal(10,2)
+,`voucher_start_date` date
+,`voucher_end_date` date
+);
 
 -- --------------------------------------------------------
 
@@ -375,6 +392,13 @@ CREATE TABLE `vouchers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `vouchers`
+--
+
+INSERT INTO `vouchers` (`id`, `code`, `discount`, `start_date`, `created_at`, `hotel_id`, `end_date`, `status`) VALUES
+(1, 'vip1233', 100.00, '2025-01-25', '2025-01-23 09:43:39', 13, '2025-01-25', 0);
+
+--
 -- Triggers `vouchers`
 --
 DELIMITER $$
@@ -397,6 +421,15 @@ CREATE TRIGGER `update_voucher_status_on_update` BEFORE UPDATE ON `vouchers` FOR
 END
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `hotel_voucher_info`
+--
+DROP TABLE IF EXISTS `hotel_voucher_info`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `hotel_voucher_info`  AS SELECT `h`.`id` AS `hotel_id`, `h`.`name` AS `hotel_name`, `h`.`stars` AS `stars`, count(`r`.`id`) AS `review_count`, `v`.`code` AS `code`, `v`.`discount` AS `discount`, `v`.`start_date` AS `voucher_start_date`, `v`.`end_date` AS `voucher_end_date` FROM ((`hotels` `h` left join `reviews` `r` on(`h`.`id` = `r`.`hotel_id`)) left join `vouchers` `v` on(`h`.`id` = `v`.`hotel_id`)) WHERE `v`.`start_date` <= curdate() AND `v`.`end_date` >= curdate() GROUP BY `h`.`id`, `v`.`id` ;
 
 -- --------------------------------------------------------
 
@@ -572,7 +605,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vouchers`
 --
 ALTER TABLE `vouchers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
