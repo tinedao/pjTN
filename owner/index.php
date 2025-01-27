@@ -8,7 +8,6 @@ if (!isset($_SESSION['email'])) {
 
 $role = "owner";
 $page = "hotelManagement";
-include('../layouts/headerAd.php');
 $db = new Database();
 $owners = $db->select("owners", "email = '$_SESSION[email]'", 1);
 $owner = $owners[0];
@@ -16,6 +15,9 @@ $owner_id = $owner['id'];
 
 // Truy vấn sử dụng view
 $hotel = $db->select("view_hotel_details", "owner_id = $owner_id", 1);
+$status = $hotel[0]['status'];
+include('../layouts/headerAd.php');
+
 ?>
 <style>
     .row .col-md-6 {
@@ -100,7 +102,6 @@ if($hotel == null){
 </div>
     <?php
 }
-
 ?>
 
 <!-- Bảng Hiển Thị -->
@@ -129,7 +130,9 @@ if($hotel == null){
                         <strong>Status:</strong> 
                         <?php echo $h['status'] == 1 
                             ? "<span class='badge bg-success'>Đã xác thực</span>" 
-                            : "<span class='badge bg-danger'>Chưa xác thực</span> <br>     <span class='text-danger'>Hãy liên hệ với quản trị viên để được xác thực</span>"; ?>
+                            : ($h['status'] == 2 
+                                ? "<span class='badge bg-warning'>Bị cấm</span> <br>     <span class='text-warning'>Hãy liên hệ với quản trị viên để được gỡ cấm</span>" 
+                                : "<span class='badge bg-danger'>Chưa xác thực</span> <br>     <span class='text-danger'>Hãy liên hệ với quản trị viên để được xác thực</span>"); ?>
                     </p>
                 </div>
                 <div class="card-footer d-flex justify-content-between">

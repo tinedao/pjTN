@@ -19,15 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $owner['password'])) {
             $status = $owner['status'];
             if ($status == 1) {
-                // Đăng hàng thanh cong
                 // Đăng nhập thành công, gán session và thông báo
             $_SESSION['email'] = $owner['email'];
             $_SESSION['username'] = $owner['username']; // Thêm ID nếu cần
 
             $alert = "Login successful.";
             $err = 0;
-
-            // Không dùng var_dump() trước khi chuyển hướng, vì nó sẽ xuất ra dữ liệu và gây lỗi HTTP
             // Chuyển hướng đến trang index
             header("Location: ../index.php?alert=" . urlencode($alert) . "&err=" . $err);
             exit();

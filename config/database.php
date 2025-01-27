@@ -76,7 +76,7 @@ END;");
             $types .= $this->getType($value); // Xác định kiểu dữ liệu
             $values[] = $value;
         }
-    
+        var_dump($data);
         // Loại bỏ dấu ", " cuối cùng
         $set = rtrim($set, ", ");
         
