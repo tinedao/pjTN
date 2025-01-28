@@ -11,7 +11,7 @@ $db = new Database();
 include('../layouts/headerAd.php');
 
 // Lấy trạng thái hiện tại từ query parameter, mặc định là 0
-$currentStatus = isset($_GET['status']) && in_array($_GET['status'], ['0', '1']) ? $_GET['status'] : '0';
+$currentStatus = isset($_GET['status']) && in_array($_GET['status'], ['0', '1']) ? $_GET['status'] : '1';
 
 // Lấy danh sách người dùng theo trạng thái
 $users = $db->select("users", "status = $currentStatus");
@@ -21,10 +21,10 @@ $users = $db->select("users", "status = $currentStatus");
     <!-- Taskbar -->
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link <?php echo $currentStatus == '0' ? 'active' : ''; ?>" href="?status=0">Chưa kích hoạt</a>
+            <a class="nav-link <?php echo $currentStatus == '1' ? 'active' : ''; ?>" href="?status=1">Đang hoạt động</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?php echo $currentStatus == '1' ? 'active' : ''; ?>" href="?status=1">Đã kích hoạt</a>
+            <a class="nav-link <?php echo $currentStatus == '0' ? 'active' : ''; ?>" href="?status=0">Đã ban</a>
         </li>
     </ul>
 

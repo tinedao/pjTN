@@ -2,7 +2,13 @@
 session_start();
 ?>
 <style>
-  
+  #userName img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
 </style>
 <section class="head">
     <div class="container flex1">
@@ -39,10 +45,13 @@ session_start();
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
+            
             <div class="inforUser sticky_infor">
                 <?php
                 if (isset($_SESSION['name'])) {
-                    echo '<span id="userName" class=" btn user_name"><i id="arrowI" class="fa-solid fa-caret-down"></i>   ' . $_SESSION['name'] . '</span>
+                    $db = new Database();
+                    $user = $db->select('users', 'id = "' . $_SESSION['id'] . '"', 1)[0];
+                    echo '<span id="userName" class=" btn user_name">   <img src="assets/upload/avatars/' . $user['profile_picture'].'" alt="">' . $_SESSION['name'] . ' <i id="arrowI" class="fa-solid fa-caret-down"></i></span>
                     <div class="hoverUserInfor">
                         <ul>
                             <li><a href="profile.php">Profile</a></li>

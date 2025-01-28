@@ -10,7 +10,7 @@ include('../config/database.php');
 $db = new Database();
 include('../layouts/headerAd.php');
 
-$currentStatus = isset($_GET['status']) && in_array($_GET['status'], ['0', '1']) ? $_GET['status'] : '0';
+$currentStatus = isset($_GET['status']) && in_array($_GET['status'], ['0', '1']) ? $_GET['status'] : '1';
 
 $owners = $db->select("owners", "status = $currentStatus");
 ?>
@@ -19,10 +19,10 @@ $owners = $db->select("owners", "status = $currentStatus");
     <!-- Taskbar -->
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link <?php echo $currentStatus == '0' ? 'active' : ''; ?>" href="?status=0">Chưa kích hoạt</a>
+            <a class="nav-link <?php echo $currentStatus == '1' ? 'active' : ''; ?>" href="?status=1">Đã kích hoạt</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?php echo $currentStatus == '1' ? 'active' : ''; ?>" href="?status=1">Đã kích hoạt</a>
+            <a class="nav-link <?php echo $currentStatus == '0' ? 'active' : ''; ?>" href="?status=0">Chưa kích hoạt</a>
         </li>
     </ul>
 

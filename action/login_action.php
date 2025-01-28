@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $users[0];
         if (password_verify($password, $user['password'])) {
             // Đăng nhập thành công, gán session và thông báo
+            $_SESSION['id'] = $user['id'];
             $_SESSION['name'] = $user['name'];
             $alert = "Xin chào, " . $user['name'] . "!";
             $err = 0;

@@ -23,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Lưu tên ảnh (token) vào cơ sở dữ liệu
     $data = array(
-        "name" => "'$name'", // Chú ý thêm dấu nháy đơn bao quanh chuỗi
-        "email" => "'$email'", // Chú ý thêm dấu nháy đơn bao quanh chuỗi
-        "password" => "'$password'", // Chú ý thêm dấu nháy đơn bao quanh chuỗi
-        "profile_picture" => "'$profile_picture'" // Lưu tên ảnh (token + phần mở rộng)
+        "name" => "$name", // Chú ý thêm dấu nháy đơn bao quanh chuỗi
+        "email" => "$email", // Chú ý thêm dấu nháy đơn bao quanh chuỗi
+        "password" => "$password", // Chú ý thêm dấu nháy đơn bao quanh chuỗi
+        "profile_picture" => "$profile_picture" // Lưu tên ảnh (token + phần mở rộng)
     );
 
     // Gọi phương thức insert

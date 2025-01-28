@@ -10,3 +10,13 @@ Owners:
 *Tạo thêm 1 trang blog, bảng blog giới thiệu phú thọ rồi truy vấn ra 1 trang blog và ở index dòng 96 - 138
 User:
     index.php:
+28/1/2025 - 10:48PM:
+user còn:
+- booking (thao tác liên quan)
+- travel blog
+- rooms
+- roomDetail
+admin:
+- review
+owner:
+- booking
