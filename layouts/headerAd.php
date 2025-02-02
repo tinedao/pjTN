@@ -217,6 +217,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?php $url_dir ?>blog.php"
+                                class="nav-link <?php if($page == "blog") echo "active"; ?>">
+                                <i class="nav-icon far fa-plus-square"></i>
+                                <p>
+                                    Quản lý Blog
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?php $url_dir ?>../action/logout.php" class="nav-link">
                                 <i class="nav-icon far fa-plus-square"></i>
                                 <p>

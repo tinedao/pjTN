@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 28, 2025 lúc 04:50 PM
+-- Thời gian đã tạo: Th2 02, 2025 lúc 03:03 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -38,6 +38,20 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`username`, `password`) VALUES
 ('admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `blog`
+--
+
+CREATE TABLE `blog` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `img` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `description` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -398,7 +412,7 @@ CREATE TABLE `vouchers` (
 --
 
 INSERT INTO `vouchers` (`id`, `code`, `discount`, `start_date`, `created_at`, `hotel_id`, `end_date`, `status`) VALUES
-(1, 'vip1233', 100.00, '2025-01-25', '2025-01-23 09:43:39', 13, '2025-01-31', 1);
+(1, 'vip1233', 100.00, '2025-01-25', '2025-01-23 09:43:39', 13, '2025-01-31', 0);
 
 --
 -- Bẫy `vouchers`
@@ -460,6 +474,12 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`username`);
+
+--
+-- Chỉ mục cho bảng `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `bookings`
@@ -542,6 +562,12 @@ ALTER TABLE `vouchers`
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
+
+--
+-- AUTO_INCREMENT cho bảng `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `bookings`
