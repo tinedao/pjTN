@@ -10,3 +10,5 @@ $db = new Database();
 
 
 
+<?php
+include('layouts/footer.php');
