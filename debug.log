@@ -1,0 +1,5 @@
+[2025-02-21 14:03:49] === New Request ===
+[2025-02-21 14:03:49] GET Data: []
+[2025-02-21 14:03:49] POST Data: {"stars":"1","review_text":"fsa\u0111\u00e2sd","hotel_id":"1","user_id":"2"}
+[2025-02-21 14:03:49] Session Data: {"id":"2","name":"\u0110\u00e0o Quang Ti\u1ebfn","email":"tine.dao19@gmail.com","username":"tine19"}
+[2025-02-21 14:03:49] No valid option provided, redirecting to rooms.php

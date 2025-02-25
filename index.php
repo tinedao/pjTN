@@ -276,7 +276,7 @@ $('#time').countdown('2024/01/01', function(event) {
                   echo '<i class="fal fa-alarm-clock"> Thời gian áp dụng: ' . htmlspecialchars($voucher['voucher_start_date']) . ' - ' . htmlspecialchars($voucher['voucher_end_date']) . '</i>';
                   echo '</div>';
                   // Bọc button trong thẻ <a> để chuyển hướng tới trang hotels
-                  echo '<a href="rooms.php?id=' . $voucher['hotel_id'] . '">';
+                  echo '<a href="rooms.php?hotel_id=' . $voucher['hotel_id'] . '">';
                   echo '<button class="flex1">';
                   echo '<span>Click để xem thêm</span>';
                   echo '<i class="fas fa-arrow-circle-right"></i>';
