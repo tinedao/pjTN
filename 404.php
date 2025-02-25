@@ -1,4 +1,6 @@
 <?php 
+include('config/database.php');
+  $db = new Database();
     include('layouts/header.php');
     include('layouts/navbar.php');
 

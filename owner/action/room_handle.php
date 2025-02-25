@@ -1,4 +1,5 @@
-<?php include('../../config/database.php');
+<?php
+include('../../config/database.php');
 session_start();
 
 if (!isset($_SESSION['email'])) {
@@ -32,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Thêm phòng vào cơ sở dữ liệu
         if ($db->insert("rooms", $room_data)) {
-            header("Location: rooms.php");
+            header("Location: ../roomMan.php");
             exit();
         } else {
             echo "<p style='color:red;'>Lỗi khi thêm phòng. Vui lòng thử lại.</p>";
@@ -68,10 +69,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Cập nhật phòng
         if ($db->update("rooms", $room_id, $room_data)) {
-            header("Location: ../rooms.php");
+            header("Location: ../roomMan.php");
             exit();
         } else {
             echo "<p style='color:red;'>Lỗi khi cập nhật phòng. Vui lòng thử lại.</p>";
         }
     }
 }
+
+// Xử lý xóa phòng (thêm phần này)
+if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['action']) && $_GET['action'] === 'delete') {
+    $room_id = $_GET['id'] ?? null;
+    $hotel_id_from_get = $_GET['hotel_id'] ?? null;
+
+    // Kiểm tra xem room_id và hotel_id có hợp lệ không
+    if ($room_id !== null && $hotel_id_from_get !== null && $hotel_id_from_get == $hotel_id) {
+        // Gọi phương thức delete từ Database class
+        $db->delete("rooms", $room_id);
+        header("Location: ../roomMan.php");
+        exit();
+    } else {
+        echo "<p style='color:red;'>Lỗi: Không thể xóa phòng. ID không hợp lệ hoặc không thuộc khách sạn này.</p>";
+    }
+}
+?>

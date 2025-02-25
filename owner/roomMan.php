@@ -73,8 +73,6 @@ if ($hotel != null && $room_types != null):
         <thead>
             <tr>
                 <th>Tên Phòng</th>
-                <th>Giá</th>
-                <th>Ảnh</th>
                 <th>Trạng Thái</th>
                 <th>Chức Năng</th>
             </tr>
@@ -83,12 +81,9 @@ if ($hotel != null && $room_types != null):
             <?php foreach ($rooms as $room): ?>
             <tr>
                 <td><?= $room['name'] ?></td>
-                <td><?= number_format($room['price'], 0, ',', '.') ?> VND</td>
-                <td><img src="../assets/upload/imgRooms/<?= $room['photo_url'] ?>" alt="Room Photo"></td>
                 <td><?= $room['status'] == 1 ? 'Đang Thuê' : 'Sẵn Sàng' ?></td>
                 <td>
-                    <a href="edit_room.php?id=<?= $room['id'] ?>" class="btn btn-primary btn-sm">Sửa</a>
-                    <a href="room_handle.php?action=delete&id=<?= $room['id'] ?>&hotel_id=<?= $hotel[0]['id'] ?>" class="btn btn-danger btn-sm">Xóa</a>
+                    <a href="action/room_handle.php?action=delete&id=<?= $room['id'] ?>&hotel_id=<?= $hotel[0]['id'] ?>" class="btn btn-danger btn-sm">Xóa</a>
                 </td>
             </tr>
             <?php endforeach; ?>

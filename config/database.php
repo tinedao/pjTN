@@ -54,7 +54,6 @@ END;");
         
         // Gắn dữ liệu vào câu lệnh Prepared Statement
         $stmt->bind_param($types, ...$values);
-        
         // Thực thi câu lệnh
         if (!$stmt->execute()) {
             error_log("Insert query failed: " . $stmt->error);

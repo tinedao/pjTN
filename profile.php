@@ -2,13 +2,15 @@
 
 
     include('config/database.php');
+    
     $db = new Database();
+
     include('layouts/header.php');
     include('layouts/navbar.php');
-if (!isset($_SESSION['name'])) {
-    header('Location: login.php');
-    exit();
-}
+    if (!isset($_SESSION['name'])) {
+        header('Location: login.php');
+        exit();
+    }
 $user = $db->select('users', 'id = "' . $_SESSION['id'] . '"', 1)[0];
 
 ?>

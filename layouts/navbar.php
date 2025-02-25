@@ -55,7 +55,6 @@ session_start();
                     <div class="hoverUserInfor">
                         <ul>
                             <li><a href="profile.php">Profile</a></li>
-                            <li><a href="cart.php">Cart</a></li>
                             <li><a href="action/logout.php">Logout</a></li>
                         </ul>
                     </div>';
