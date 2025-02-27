@@ -12,7 +12,6 @@ include('../layouts/headerAd.php');
 $db = new Database();
 
 
-// Kiểm tra nếu là chỉnh sửa
 $isEdit = isset($_GET['id']) && !empty($_GET['id']);
 $room = null;
 
@@ -39,7 +38,6 @@ if ($isEdit) {
     object-fit: cover;
 }
 </style>
-<!-- Form Thêm/Chỉnh Sửa Loại Phòng -->
 <div class="card shadow p-4 mb-4">
     <h4 class="card-title mb-3"><?php echo $isEdit ? "Chỉnh Sửa Loại Phòng" : "Thêm Loại Phòng Mới"; ?></h4>
     <form action="action/RoomType_handle.php" method="POST" enctype="multipart/form-data">

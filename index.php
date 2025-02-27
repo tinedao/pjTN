@@ -43,11 +43,11 @@ $vouchers  = $db->select('hotel_voucher_info','',8);
                 </div>
                 <div class="box">
                     <span>ARRIVAL DATE</span> <br>
-                    <input type="date" name="arrival_date" required>
+                    <input type="date" name="arrival_date" >
                 </div>
                 <div class="box">
                     <span>DEPARTURE DATE</span> <br>
-                    <input type="date" name="departure_date" required>
+                    <input type="date" name="departure_date" >
                 </div>
                 <div class="box">
                     <button class="flex1" type="submit">
@@ -262,20 +262,16 @@ $('#time').countdown('2024/01/01', function(event) {
                   echo '<h5>DISCOUNT - ' . htmlspecialchars(number_format($voucher['discount'])) . '%</h5>';
                   echo '<h3>' . htmlspecialchars($voucher['hotel_name']) . '</h3>';
                   echo '<span>';
-                  // Hiển thị số sao
-                  echo str_repeat('<i class="fas fa-star"></i>', floor($voucher['stars'])); // Sao đầy
+                  echo str_repeat('<i class="fas fa-star"></i>', floor($voucher['stars'])); 
                   if ($voucher['stars'] - floor($voucher['stars']) >= 0.5) {
-                      echo '<i class="fas fa-star-half-alt"></i>'; // Sao nửa
+                      echo '<i class="fas fa-star-half-alt"></i>'; 
                   }
-                  echo str_repeat('<i class="far fa-star"></i>', 5 - ceil($voucher['stars'])); // Sao rỗng
-                  // Hiển thị số lượng đánh giá
+                  echo str_repeat('<i class="far fa-star"></i>', 5 - ceil($voucher['stars'])); 
                   echo '<label>(' . $voucher['review_count'] . ' Reviews)</label>';
                   echo '</span>';
-                  // Hiển thị thời gian áp dụng voucher
                   echo '<div class="flex timeV">';
                   echo '<i class="fal fa-alarm-clock"> Thời gian áp dụng: ' . htmlspecialchars($voucher['voucher_start_date']) . ' - ' . htmlspecialchars($voucher['voucher_end_date']) . '</i>';
                   echo '</div>';
-                  // Bọc button trong thẻ <a> để chuyển hướng tới trang hotels
                   echo '<a href="rooms.php?hotel_id=' . $voucher['hotel_id'] . '">';
                   echo '<button class="flex1">';
                   echo '<span>Click để xem thêm</span>';

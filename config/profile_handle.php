@@ -3,17 +3,14 @@ include('../config/database.php');
 $db = new Database();
 session_start();
 
-// Kiểm tra nếu người dùng chưa đăng nhập
 if (!isset($_SESSION['name'])) {
     header('Location: login.php');
     exit();
 }
 
-// Lấy thông tin user
 $user_id = $_SESSION['id'];
 $user = $db->select('users', 'id = "' . $user_id . '"', 1)[0];
 
-// Xử lý các form
 if (isset($_GET['action']) && ($_GET['action'] === 'delete')) {
     $db->delete('users', $user_id);
     session_destroy();
@@ -26,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $alert = "";
     $err = 0;
 
-    // Xử lý đổi avatar
     
     if (isset($_FILES['profile_picture'])) {
         $target_dir = dirname(__DIR__) . "/assets/upload/avatars/";
@@ -41,10 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $alert = "Cập nhật avatar thất bại.";
             }
         } else {
-            $err = 1; // Nếu upload ảnh thất bại
+            $err = 1; 
         }
     }
-    // Xử lý đổi tên
     if (isset($_POST['name'])) {
         $name = $_POST['name'];
         if (!empty($name)) {
@@ -58,7 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // Xử lý đổi số điện thoại
     if (isset($_POST['phone_number'])) {
         $phone_number = $_POST['phone_number'];
         if (!empty($phone_number)) {
@@ -72,11 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // Xử lý đổi mật khẩu
     if (isset($_POST['password'])) {
         $password = $_POST['password'];
         if (!empty($password)) {
-            // Mã hóa mật khẩu trước khi lưu
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
             $update_data = ['password' => $hashed_password];
             if ($db->update('users', $user_id, $update_data)) {
@@ -88,7 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // Hiển thị thông báo và chuyển hướng lại trang profile
     if ($err) {
         header('Location: ../profile.php?alert=' . urlencode($alert) . '&err=' . $err);
     } else {
@@ -97,7 +88,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     exit();
 }
 
-// Nếu không có POST, chuyển hướng về trang profile
 header('Location: ../profile.php');
 exit();
 ?>

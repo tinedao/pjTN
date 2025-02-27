@@ -27,7 +27,7 @@ if (!$hotel) {
         margin-bottom: 15px;
         line-height: 2;
     }
-    .box {
+    .box_room {
         border: 1px solid #e0e0e0;
         border-radius: 8px;
         padding: 15px;
@@ -103,7 +103,7 @@ if (!$hotel) {
         font-size: 12px;
     }
     .fa-star {
-        color: #ee4d2d; /* Màu cam giống Shopee */
+        color: #ee4d2d;
         font-size: 14px;
     }
     .delete-btn a {
@@ -155,7 +155,7 @@ if (!$hotel) {
 
 <div class="container">
     <?php foreach ($rooms as $room) : ?>
-        <div class="box">
+        <div class="box_room">
             <div class="row">
                 <div class="room-container d-flex align-items-center">
                     <div class="img-room">
@@ -260,5 +260,6 @@ if (!$hotel) {
 </div>
 
 <?php
+$toado_value = $hotel['coordinates'];
 include('layouts/footer.php');
 ?>

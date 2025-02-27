@@ -11,7 +11,6 @@ $page = "hotel";
 include('../layouts/headerAd.php');
 $db = new Database();
 
-// Kiểm tra nếu là chỉnh sửa
 $isEdit = isset($_GET['id']) && !empty($_GET['id']);
 $hotel = null;
 
@@ -40,7 +39,6 @@ if ($isEdit) {
 }
 </style>
 
-<!-- Form Thêm/Chỉnh Sửa Khách Sạn -->
 <div class="card shadow p-4 mb-4">
     <h4 class="card-title mb-3"><?php echo $isEdit ? "Chỉnh Sửa Khách Sạn" : "Thêm Khách Sạn Mới"; ?></h4>
     <form action="action/hotelHandle.php" method="POST" enctype="multipart/form-data">

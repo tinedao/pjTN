@@ -2,11 +2,9 @@
     $dir_url = "../";
     include('../layouts/headerLogin.php');
 
-    // Xử lý thông báo nếu tồn tại
     $alert = isset($_GET['alert']) ? htmlspecialchars($_GET['alert']) : '';
     $err = isset($_GET['err']) ? (int)$_GET['err'] : '';
 
-    // Hiển thị thông báo
     if (!empty($alert)) { ?>
         <div class="alert <?php echo $err === 1 ? 'alert-danger' : 'alert-success'; ?>">
             <?php echo $alert; ?>
@@ -15,7 +13,6 @@
         
     <div class="container-login100">
         <div class="wrap-login100">
-            <!-- Form đăng nhập -->
             <form class="login100-form validate-form" action="action/login.php" method="post">
                 <a href="../index.php">
                     <img src="<?php echo $dir_url ?>assets/img/logo.png" alt="logo" 

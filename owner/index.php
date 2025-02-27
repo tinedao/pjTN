@@ -13,7 +13,6 @@ $owners = $db->select("owners", "email = '$_SESSION[email]'", 1);
 $owner = $owners[0];
 $owner_id = $owner['id'];
 
-// Truy vấn sử dụng view
 $hotel = $db->select("view_hotel_details", "owner_id = $owner_id", 1);
 $status = $hotel[0]['status'];
 include('../layouts/headerAd.php');
@@ -40,7 +39,6 @@ include('../layouts/headerAd.php');
         height: 500px;
     }
 </style>
-<!-- Form Thêm Khách Sạn -->
 <?php
 if($hotel == null){
     ?>
@@ -70,7 +68,6 @@ if($hotel == null){
                 <label for="location_id" class="form-label w-100">Địa Điểm</label>
                 <select name="location_id" id="location_id" class="form-select" required>
                     <?php
-                    // Lấy danh sách địa điểm
                     $locations = $db->select("locations");
                     foreach ($locations as $location) {
                         echo "<option value='" . $location['id'] . "'>" . $location['name'] . "</option>";
@@ -82,7 +79,6 @@ if($hotel == null){
                 <label for="hotel_type_id" class="form-label w-100">Loại Khách Sạn</label>
                 <select name="hotel_type_id" id="hotel_type_id" class="form-select" required>
                     <?php
-                    // Lấy danh sách loại khách sạn
                     $hotelTypes = $db->select("hotel_types");
                     foreach ($hotelTypes as $hotelType) {
                         echo "<option value='" . $hotelType['id'] . "'>" . $hotelType['name'] . "</option>";
@@ -104,7 +100,6 @@ if($hotel == null){
 }
 ?>
 
-<!-- Bảng Hiển Thị -->
 <div class="container">
 <div class="row g-4">
     <?php

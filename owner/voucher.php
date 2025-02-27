@@ -14,7 +14,6 @@ $owners = $db->select("owners", "email = '$_SESSION[email]'", 1);
 $owner = $owners[0];
 $owner_id = $owner['id'];
 
-// Lấy thông tin khách sạn của owner
 $hotel = $db->select("hotels", "owner_id = $owner_id", 1);
 
 ?>
@@ -26,7 +25,6 @@ $hotel = $db->select("hotels", "owner_id = $owner_id", 1);
 </style>
 
 <?php if ($hotel != null): ?>
-<!-- Form Thêm Voucher -->
 <div class="card shadow p-4 mb-4">
     <h4 class="card-title mb-3">Thêm Voucher Mới</h4>
     <form action="action/voucherHandle.php" method="POST">
@@ -56,7 +54,6 @@ $hotel = $db->select("hotels", "owner_id = $owner_id", 1);
     </form>
 </div>
 
-<!-- Bảng Hiển Thị Voucher -->
 <div class="row g-4">
     <table class="table table-bordered">
         <thead>
@@ -71,7 +68,6 @@ $hotel = $db->select("hotels", "owner_id = $owner_id", 1);
         </thead>
         <tbody>
             <?php
-            // Truy vấn lấy các voucher
             $vouchers = $db->select("vouchers", "hotel_id = " . $hotel[0]['id']);
             foreach ($vouchers as $voucher) {
                 ?>

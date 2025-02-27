@@ -10,12 +10,10 @@ include('../config/database.php');
 $db = new Database();
 include('../layouts/headerAd.php');
 
-// Lấy danh sách khách sạn theo trạng thái
 $hotel = $db->select("hotels");
 ?>
 
 <div class="mt-4">
-    <!-- Table -->
     <div class="table-responsive mt-3">
         <table class="table">
             <thead>

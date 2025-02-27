@@ -12,7 +12,6 @@ $owners = $db->select("owners", "email = '$_SESSION[email]'", 1);
 $owner = $owners[0];
 $owner_id = $owner['id'];
 
-// Lấy thông tin khách sạn của owner
 $hotel = $db->select("hotels", "owner_id = $owner_id", 1);
 $hotel_id = isset($hotel[0]['id']) ? $hotel[0]['id'] : null;
 
@@ -22,16 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $type_id = $_POST['type_id'] ?? '';
     $hotel_id = $_POST['hotel_id'] ?? '';
 
-    // Kiểm tra nếu hành động là thêm phòng
     if ($action === 'add' && $hotel_id !== null) {
-        // Chuẩn bị dữ liệu để thêm
         $room_data = [
             'name' => $name,
             'type_id' => $type_id,
             'hotel_id' => $hotel_id,
         ];
 
-        // Thêm phòng vào cơ sở dữ liệu
         if ($db->insert("rooms", $room_data)) {
             header("Location: ../roomMan.php");
             exit();
@@ -40,11 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // Nếu hành động là cập nhật phòng
     if ($action === 'edit' && isset($_POST['room_id'])) {
         $room_id = $_POST['room_id'];
 
-        // Kiểm tra ảnh nếu có
         $photo = $_FILES['photo'] ?? null;
         if ($photo) {
             $alert = "";
@@ -55,19 +49,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
         }
 
-        // Chuẩn bị dữ liệu để cập nhật
         $room_data = [
             'name' => $name,
             'type_id' => $type_id,
             'hotel_id' => $hotel_id
         ];
         
-        // Nếu có ảnh mới, thêm vào dữ liệu cập nhật
         if ($photo) {
-            $room_data['photo'] = $photo_url; // Thêm đường dẫn ảnh vào dữ liệu
+            $room_data['photo'] = $photo_url; 
         }
 
-        // Cập nhật phòng
         if ($db->update("rooms", $room_id, $room_data)) {
             header("Location: ../roomMan.php");
             exit();
@@ -77,14 +68,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-// Xử lý xóa phòng (thêm phần này)
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['action']) && $_GET['action'] === 'delete') {
     $room_id = $_GET['id'] ?? null;
     $hotel_id_from_get = $_GET['hotel_id'] ?? null;
 
-    // Kiểm tra xem room_id và hotel_id có hợp lệ không
     if ($room_id !== null && $hotel_id_from_get !== null && $hotel_id_from_get == $hotel_id) {
-        // Gọi phương thức delete từ Database class
         $db->delete("rooms", $room_id);
         header("Location: ../roomMan.php");
         exit();

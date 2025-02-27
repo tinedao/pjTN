@@ -9,7 +9,6 @@ if (!isset($_SESSION['email'])) {
 
 $db = new Database();
 
-// Lấy thông tin từ form
 $hotel_id = $_POST['hotel_id'];
 $action = $_POST['action'];
 $name = $_POST['name'];
@@ -17,15 +16,12 @@ $price = $_POST['price'];
 $description = $_POST['description'];
 $bed_count = $_POST['bed_count'];
 
-// Xử lý ảnh
 $photo_url = "";
 if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
     $photo_url = $db->uploadImage($_FILES['photo'], "../../assets/upload/imgTypeRooms/", $alert);
 }
 
-// Kiểm tra hành động (add hoặc edit)
 if ($action === 'add') {
-    // Thêm loại phòng
     if ($photo_url !== "") {
         $data = [
             'hotel_id' => $hotel_id,
@@ -47,10 +43,8 @@ if ($action === 'add') {
         }
     }
 } elseif ($action === 'edit') {
-    // Sửa loại phòng
-    $room_type_id = $_POST['room_id']; // Lấy ID loại phòng cần sửa từ form (đảm bảo form có trường này)
+    $room_type_id = $_POST['room_id'];
 
-    // Dữ liệu để cập nhật
     $data = [
         'name' => $name,
         'price' => $price,
@@ -58,13 +52,11 @@ if ($action === 'add') {
         'bed_count' => $bed_count
     ];
 
-    // Chỉ cập nhật ảnh nếu có ảnh mới
     if ($photo_url !== "") {
         $data['photo_url'] = $photo_url;
     }
 
-    // Cập nhật loại phòng
-    $update_room_type = $db->update("room_types", $room_type_id, $data); // Truyền $room_type_id vào hàm update
+    $update_room_type = $db->update("room_types", $room_type_id, $data);
 
     if ($update_room_type) {
         $alert = "Cập nhật loại phòng thành công!";

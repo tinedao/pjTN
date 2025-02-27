@@ -22,3 +22,23 @@
 </head>
 <body>
 <?php include 'layouts/alert.php';
+ $db = new Database();
+session_start();
+if (isset($_SESSION['id'])) {
+  $status_user = $db->select('users', 'id = "' . $_SESSION['id'] . '"', 1);
+  if ($status_user[0]['status'] == 0) {
+    $_SESSION = array();
+
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+        );
+    }
+
+    session_destroy();
+    header('Location: login.php?&err=1&alert=Bạn đã bị ban');
+}
+}
+ ?>

@@ -10,15 +10,12 @@ include('../config/database.php');
 $db = new Database();
 include('../layouts/headerAd.php');
 
-// Lấy trạng thái hiện tại từ query parameter, mặc định là 0
 $currentStatus = isset($_GET['status']) && in_array($_GET['status'], ['0', '1']) ? $_GET['status'] : '1';
 
-// Lấy danh sách người dùng theo trạng thái
 $users = $db->select("users", "status = $currentStatus");
 ?>
 
 <div class=" mt-4">
-    <!-- Taskbar -->
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link <?php echo $currentStatus == '1' ? 'active' : ''; ?>" href="?status=1">Đang hoạt động</a>
@@ -28,7 +25,6 @@ $users = $db->select("users", "status = $currentStatus");
         </li>
     </ul>
 
-    <!-- Table -->
     <div class="table-responsive mt-3">
         <table class="table">
             <thead>

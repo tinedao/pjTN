@@ -16,7 +16,6 @@ $owners = $db->select("owners", "status = $currentStatus");
 ?>
 
 <div class=" mt-4">
-    <!-- Taskbar -->
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link <?php echo $currentStatus == '1' ? 'active' : ''; ?>" href="?status=1">Đã kích hoạt</a>
@@ -26,7 +25,6 @@ $owners = $db->select("owners", "status = $currentStatus");
         </li>
     </ul>
 
-    <!-- Table -->
     <div class="table-responsive mt-3">
         <table class="table">
             <thead>

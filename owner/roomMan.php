@@ -14,11 +14,9 @@ $owners = $db->select("owners", "email = '$_SESSION[email]'", 1);
 $owner = $owners[0];
 $owner_id = $owner['id'];
 
-// Lấy thông tin khách sạn của owner
 $hotel = $db->select("hotels", "owner_id = $owner_id", 1);
 $room_types = $db->select("room_types");
 $hotel_id = $hotel[0]['id'];
-// Lấy thông tin các phòng
 $rooms = $db->select("rooms", "hotel_id = " . $hotel_id);
 ?>
 <style>
@@ -36,7 +34,6 @@ $rooms = $db->select("rooms", "hotel_id = " . $hotel_id);
 <?php 
 if ($hotel != null && $room_types != null):
 ?>
-<!-- Form Thêm Phòng -->
 <div class="card shadow p-4 mb-4">
     <h4 class="card-title mb-3">Thêm Phòng Mới</h4>
     <form action="action/room_handle.php" method="POST" enctype="multipart/form-data">
@@ -67,7 +64,6 @@ if ($hotel != null && $room_types != null):
     </form>
 </div>
 
-<!-- Bảng Hiển Thị Các Phòng -->
 <div class="row g-4">
     <table class="table table-bordered">
         <thead>

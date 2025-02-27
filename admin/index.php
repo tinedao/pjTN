@@ -10,15 +10,12 @@ include('../config/database.php');
 $db = new Database();
 include('../layouts/headerAd.php');
 
-// Lấy trạng thái hiện tại từ query parameter, mặc định là 0
 $currentStatus = isset($_GET['status']) && in_array($_GET['status'], ['1', '0', '2']) ? $_GET['status'] : '1';
 
-// Lấy danh sách khách sạn theo trạng thái
 $hotel = $db->select("hotels", "status = $currentStatus");
 ?>
 
 <div class="mt-4">
-    <!-- Taskbar -->
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link <?php echo $currentStatus == '1' ? 'active' : ''; ?>" href="?status=1">Đã xác nhận</a>
@@ -31,7 +28,6 @@ $hotel = $db->select("hotels", "status = $currentStatus");
         </li>
     </ul>
 
-    <!-- Table -->
     <div class="table-responsive mt-3">
         <table class="table">
             <thead>

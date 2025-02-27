@@ -1,5 +1,4 @@
 <?php
-session_start();
 ?>
 <style>
   #userName img{
@@ -55,6 +54,7 @@ session_start();
                     <div class="hoverUserInfor">
                         <ul>
                             <li><a href="profile.php">Profile</a></li>
+                            <li><a href="booking.php">Booking</a></li>
                             <li><a href="action/logout.php">Logout</a></li>
                         </ul>
                     </div>';
@@ -80,7 +80,6 @@ session_start();
             arrowI.style.transform = arrowI.style.transform === "rotate(0deg)" ? "rotate(180deg)" : "rotate(0deg)";
         });
 
-        // Đóng khi click bên ngoài
         document.addEventListener("click", function(event) {
             if (!userName.contains(event.target) && !hoverUserInfor.contains(event.target)) {
                 hoverUserInfor.style.display = "none";

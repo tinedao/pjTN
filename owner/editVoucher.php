@@ -12,7 +12,6 @@ $page = "voucher";
 include('../layouts/headerAd.php');
 $db = new Database();
 
-// Lấy ID từ URL
 $id = $_GET['id'] ?? null;
 if (!$id) {
     $_SESSION['alert'] = "ID không hợp lệ!";
@@ -20,7 +19,6 @@ if (!$id) {
     exit();
 }
 
-// Lấy thông tin voucher từ database
 $voucher = $db->getById("vouchers", $id);
 if (!$voucher) {
     $_SESSION['alert'] = "Voucher không tồn tại!";

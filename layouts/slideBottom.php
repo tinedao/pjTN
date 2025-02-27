@@ -1,7 +1,7 @@
 <style>
   .gallary .owl-carousel .owl-item img {
-    width: 100%; /* Đặt kích thước mong muốn */
-    height: 300px; /* Giữ tỷ lệ ảnh nguyên vẹn */
+    width: 100%; 
+    height: 300px; 
     object-fit: cover;
 }
 

@@ -13,8 +13,7 @@ $error = 0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $db = new Database();
 
-    // Lấy dữ liệu từ form
-    $action = $_POST['action']; // Nhận giá trị action (edit hoặc add)
+    $action = $_POST['action'];
     $name = $_POST['name'];
     $address = $_POST['address'];
     $description = $_POST['description'];
@@ -23,18 +22,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hotel_type_id = intval($_POST['hotel_type_id']);
     $owner_id = $db->select("owners", "email = '$_SESSION[email]'", 1)[0]['id'];
 
-    // Xử lý ảnh nếu có upload
     $photo_name = null;
     if (!empty($_FILES["photo"]["name"])) {
         $photo_name = $db->uploadImage($_FILES["photo"], "../../assets/upload/imgHotels/", $alert);
         if (!$photo_name) {
-            $error = 1; // Đánh dấu lỗi khi upload ảnh thất bại
+            $error = 1; 
         }
     }
 
     if ($action === 'add') {
         if ($photo_name || empty($_FILES["photo"]["name"])) {
-            // Chuẩn bị dữ liệu để chèn vào bảng hotels
             $data = [
                 "name" => $name,
                 "address" => $address,
@@ -44,10 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 "coordinates" => $coordinates,
                 "location_id" => $location_id,
                 "owner_id" => $owner_id,
-                "status" => 0 // Mặc định là chưa xác thực
+                "status" => 0 
             ];
 
-            // Sử dụng hàm insert để thêm dữ liệu
+           
             $result = $db->insert("hotels", $data);
 
             if ($result) {
@@ -58,9 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     } elseif ($action === 'edit') {
-        $hotel_id = intval($_POST['hotel_id']); // Nhận ID khách sạn cần chỉnh sửa
+        $hotel_id = intval($_POST['hotel_id']); 
 
-        // Chuẩn bị dữ liệu để cập nhật
         $data = [
             "name" => $name,
             "address" => $address,
@@ -70,12 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "location_id" => $location_id
         ];
         
-        // Nếu có ảnh mới, thêm vào dữ liệu cập nhật
+        
         if ($photo_name) {
             $data["photo"] = $photo_name;
         }
 
-        // Sử dụng hàm update để chỉnh sửa dữ liệu
         $result = $db->update("hotels", $hotel_id, $data);
 
         if ($result) {
@@ -89,7 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 1;
     }
 
-    // Điều hướng về trang quản lý khách sạn với thông báo
     header("location: ../index.php?alert=" . urlencode($alert) . "&err=$error");
     exit();
 }
