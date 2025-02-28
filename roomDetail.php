@@ -13,6 +13,7 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $room_type = $db->select("room_types", "id = $id")[0];
 $user = $db->select("users", "id = $_SESSION[id]")[0];
 $vouchers = $db->select("vouchers", $room_type['hotel_id'] ? "status = 1" : "status = 1");
+$toado_value = $db->select("hotels", "id = $room_type[hotel_id]")[0]['coordinates'];
 ?>
 <style>
     .img_room{
@@ -139,4 +140,5 @@ document.getElementById('discount_id').addEventListener('change', updateTotalPri
 document.getElementById('PriceHide').addEventListener('change', updateTotalPrice);
 </script>
 <?php
+
 include('layouts/footer.php');
