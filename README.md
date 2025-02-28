@@ -1,4 +1,5 @@
 # pjTN
+# check PHPMAILER trong vendor trống thì clone : git clone https://github.com/PHPMailer/PHPMailer.git
 17/1/2025 - 1:54 AM
 -cần sửa lại khóa ngoại các trường khi xóa các dữ liệu bảng chính thì dữ liệu các bảng phụ cũng bị xóa theo
 Đã code list, add trong owner: index, typeroom
@@ -20,3 +21,6 @@ admin:
 - review
 owner:
 - booking
+28/2/2025 - 8:39:
+- còn blog
+- thanh toán
