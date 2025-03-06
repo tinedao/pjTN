@@ -36,7 +36,6 @@
                 <li> <a href="index.php">Home</a> </li>
                 <li> <a href="hotels.php">Hotels</a> </li>
                 <li> <a href="voucher.php">Voucher</a> </li>
-                <li> <a href="blog.php">Blog Travel</a> </li>
                 <li> <a href="owner/index.php">Owner</a> </li>
             </ul>
             <div class="hamburger">
