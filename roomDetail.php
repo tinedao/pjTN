@@ -2,13 +2,14 @@
 
 include('config/database.php');
 $db = new Database();
-
 include('layouts/header.php');
-include('layouts/navbar.php');
 if (!isset($_SESSION['name'])) {
     header('Location: login.php');
     exit();
 }
+
+include('layouts/navbar.php');
+
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $room_type = $db->select("room_types", "id = $id")[0];
 $user = $db->select("users", "id = $_SESSION[id]")[0];
