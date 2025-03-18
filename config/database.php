@@ -2,10 +2,15 @@
 class Database {
     public $conn;
 
+    // private const DB_SERVER = "sql106.infinityfree.com";
+    // private const DB_USERNAME = "if0_38547391";
+    // private const DB_PASSWORD = "ULu0KQrvzHw";
+    // private const DB_NAME = "if0_38547391_pjtn";
+
     private const DB_SERVER = "localhost";
     private const DB_USERNAME = "root";
     private const DB_PASSWORD = "";
-    private const DB_NAME = "pjTN";
+    private const DB_NAME = "pjtn";
 
     public function __construct() {
         $this->conn = new mysqli(self::DB_SERVER, self::DB_USERNAME, self::DB_PASSWORD, self::DB_NAME);
