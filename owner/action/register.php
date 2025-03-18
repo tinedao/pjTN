@@ -12,10 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $alert = "";
 
     $data = array(
-        "username" => "'$username'", 
-        "email" => "'$email'", 
-        "password" => "'$password'", 
-        "phone" => "'$phone'", 
+        "username" => "$username", 
+        "email" => "$email", 
+        "password" => "$password", 
+        "phone" => "$phone", 
     );
 
     $db->insert("owners", $data);

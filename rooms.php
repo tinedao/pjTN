@@ -12,14 +12,11 @@ function displayStars($rating) {
 }
 
 $db = new Database();
-$rooms = $db->select("room_types");
 $hotel_id = isset($_GET['hotel_id']) ? intval($_GET['hotel_id']) : 0;
-$reviews = $db->select("reviews", "hotel_id = $hotel_id");
-$hotel = !empty($db->select("hotels", "id = $hotel_id")) ? $db->select("hotels", "id = $hotel_id")[0] : null;
+$hotel = $db->select("hotels", "id = $hotel_id", 1)[0];
 
-if (!$hotel) {
-    die("Khách sạn không tồn tại!");
-}
+$reviews = $db->select("reviews", "hotel_id = $hotel_id");
+$rooms = $db->select("room_types", "hotel_id = $hotel_id");
 ?>
 
 <style>

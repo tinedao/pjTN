@@ -14,7 +14,9 @@ $owner = $owners[0];
 $owner_id = $owner['id'];
 
 $hotel = $db->select("view_hotel_details", "owner_id = $owner_id", 1);
-$status = $hotel[0]['status'];
+if($hotel != null){
+    $hotel_id = $hotel[0]['id'];
+}
 include('../layouts/headerAd.php');
 
 ?>
@@ -44,7 +46,7 @@ if($hotel == null){
     ?>
     <div class="card shadow p-4 mb-4">
     <h4 class="card-title mb-3">Thêm Khách Sạn Mới</h4>
-    <form action="action/addHotel.php" method="POST" enctype="multipart/form-data">
+    <form action="action/hotelHandle.php?action=add" method="POST" enctype="multipart/form-data">
         <input type="text" name="hotel_id" value="<?php echo $hotel_id; ?>" hidden>
         <input type="hidden" name="action" value="add">
         <div class="row g-3">

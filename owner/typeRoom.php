@@ -16,6 +16,9 @@ $owner_id = $owner['id'];
 
 
 $hotel = $db->select("hotels", "owner_id = $owner_id", 1);
+if($hotel != null){
+    $hotel_id = $hotel[0]['id'];
+}
 
 ?>
 <style>
@@ -83,7 +86,7 @@ if($hotel != null):
         </thead>
         <tbody>
             <?php
-                $typeRooms = $db->select("room_types");
+                $typeRooms = $db->select("room_types", "hotel_id = $hotel_id");
                 foreach ($typeRooms as $room) {
                     ?>
             <tr>

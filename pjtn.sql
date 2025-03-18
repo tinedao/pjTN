@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 27, 2025 lúc 10:37 AM
+-- Thời gian đã tạo: Th3 18, 2025 lúc 03:35 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -78,13 +78,12 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `user_id`, `room_id`, `totalPrice`, `check_in_date`, `check_out_date`, `phone_number`, `email`, `status`, `created_at`, `hotel_id`) VALUES
-(20, 2, 18, 194000, '2025-02-27', '2025-02-28', '0979499802', 'tine.dao19@gmail.com', 1, '2025-02-27 07:04:38', 13),
-(21, 2, 18, 200000, '2025-02-27', '2025-02-28', '0979499802', 'tine.dao19@gmail.com', 1, '2025-02-27 07:07:33', 13),
-(23, 2, 18, 200000, '2025-02-27', '2025-02-28', '0979499802', 'tine.dao19@gmail.com', 1, '2025-02-27 07:11:16', 13),
-(24, 2, 18, 200000, '2025-02-27', '2025-02-28', '0979499802', 'tine.dao19@gmail.com', 1, '2025-02-27 07:19:37', 13),
-(25, 2, 18, 200000, '2025-02-27', '2025-02-28', '0979499802', 'tine.dao19@gmail.com', 1, '2025-02-27 07:20:23', 13),
-(26, 2, 18, 200000, '2025-02-27', '2025-02-28', '0979499802', 'tine.dao19@gmail.com', 1, '2025-02-27 07:21:36', 13),
-(27, 2, 18, 200000, '2025-02-27', '2025-02-28', '0979499802', 'tine.dao19@gmail.com', 0, '2025-02-27 07:22:59', 13);
+(30, 2, 22, 800000, '2025-03-19', '2025-03-21', '0979499802', 'tine.dao19@gmail.com', 1, '2025-03-18 14:08:09', 14),
+(31, 2, 25, 10000000, '2025-03-18', '2025-03-20', '0979499802', 'tine.dao19@gmail.com', 1, '2025-03-18 14:22:52', 13),
+(32, 2, 24, 2000000, '2025-03-19', '2025-03-20', '0979499802', 'tine.dao19@gmail.com', 0, '2025-03-18 14:26:40', 14),
+(33, 2, 25, 10000000, '2025-03-20', '2025-03-22', '0979499802', 'tine.dao19@gmail.com', 0, '2025-03-18 14:29:30', 13),
+(34, 2, 21, 2000000, '2025-03-19', '2025-03-20', '0979499802', 'tine.dao19@gmail.com', 0, '2025-03-18 14:31:40', 14),
+(35, 2, 25, 5000000, '2025-03-22', '2025-03-23', '0979499802', 'tine.dao19@gmail.com', 0, '2025-03-18 14:34:35', 13);
 
 -- --------------------------------------------------------
 
@@ -137,7 +136,10 @@ CREATE TABLE `hotels` (
 --
 
 INSERT INTO `hotels` (`id`, `owner_id`, `name`, `address`, `photo`, `stars`, `coordinates`, `description`, `starting_price`, `location_id`, `hotel_type_id`, `status`) VALUES
-(13, 3, 'Khách sạn Phú Thọ - Sài Gòn', 'Châu Phong', '654fe6d7b4250cb42f33eec4ea961a43.jpg', 3, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3716.765930633168!2d105.39871297596939!3d21.32026338040293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31348d5162acb801%3A0x80cf111220ae974f!2zS2jDoWNoIHPhuqFuIFPDoGkgR8OybiAtIFBow7ogVGjhu40gKFNhaWdvbnRvdXJpc3QgR3JvdXAp!5e0!3m2!1svi!2s!4v1737440610096!5m2!1svi!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 'trên cả tuyệt vời ngọt như nước suối', 20000.00, 1, 1, 1);
+(13, 3, 'Khách sạn Phú Thọ - Sài Gòn', 'Châu Phong', '654fe6d7b4250cb42f33eec4ea961a43.jpg', 4, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3716.765930633168!2d105.39871297596939!3d21.32026338040293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31348d5162acb801%3A0x80cf111220ae974f!2zS2jDoWNoIHPhuqFuIFPDoGkgR8OybiAtIFBow7ogVGjhu40gKFNhaWdvbnRvdXJpc3QgR3JvdXAp!5e0!3m2!1svi!2s!4v1737440610096!5m2!1svi!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 'trên cả tuyệt vời ngọt như nước suối', 5000000.00, 1, 1, 1),
+(14, 5, 'Central Residence Việt Trì', '1498 ĐL Hùng Vương', '56753bb89ff1780d5b01616d361efaed.jpg', NULL, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14867.590762693879!2d105.38090480200437!3d21.31505859365745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31348db089207cb9%3A0x756d0f8064f4888a!2sCentral%20Residence%20Vi%E1%BB%87t%20Tr%C3%AC!5e0!3m2!1svi!2s!4v1742306139633!5m2!1svi!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 'Tuyệt', 400000.00, 1, 1, 1),
+(15, 7, 'Nhà Nghỉ Hương Trà Tân Phú', 'Tân Phú', '59d66107e11ab29d8d8fa8a505728076.jpg', NULL, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d70780.00605076243!2d104.98756943724312!3d21.195608996407202!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31337e53217bdb3f%3A0xc06b43253e578787!2zTmjDoCBOZ2jhu4kgSMawxqFuZyBUcsOgIFTDom4gUGjDug!5e0!3m2!1svi!2s!4v1742306495895!5m2!1svi!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 'Tuyệt', 60000.00, 13, 3, 1),
+(16, 6, 'Khách sạn Lâm Anh', 'Hà Lộc', 'cef93b5426668c6f15c7130fe5e94a4d.jpg', NULL, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d35338.09076363604!2d105.21650642097858!3d21.411187258591006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313491ebfc914aff%3A0xa8838b3fa1a89dbe!2zSG90ZWwgTMOibSBBbmggMzUgUGjDuiBUaOG7jQ!5e0!3m2!1svi!2s!4v1742306739689!5m2!1svi!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 'Hay á chứ', NULL, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -227,7 +229,10 @@ CREATE TABLE `owners` (
 --
 
 INSERT INTO `owners` (`id`, `username`, `password`, `status`, `email`, `phone`) VALUES
-(3, 'tine19', '$2y$10$qXnDG/SAOf5Bc6psVtvAIe2j5jgMIIS4cD1F9.2ndfvnbWz9GFGSm', 1, 'tine.dao19@gmail.com', '0979499802');
+(3, 'tine19', '$2y$10$qXnDG/SAOf5Bc6psVtvAIe2j5jgMIIS4cD1F9.2ndfvnbWz9GFGSm', 1, 'tine.dao19@gmail.com', '0979499802'),
+(5, 'tine20', '$2y$10$vNCGbxgNDz6j6dwT6YE5IOtjApe8RsLz4QkYkvVjUI40l2.pwR.ai', 1, 'dinhthingoc12@gmail.com', '0979499801'),
+(6, 'kukhao', '$2y$10$GtmLnv1VOaABHw6I/Hf0U.i5MAmvkDjEoWt/IwrWZlSAnb9TyQBTu', 1, 'kukhao9x@gmail.com', '0979499803'),
+(7, 'kukhao9z', '$2y$10$9BVMmr64PXm.XKX7lNji7uXNIA8y9q3nu0FZyLN2.Zsr/WCefl94O', 1, 'kukhao9z@gmail.com', '0982396270');
 
 -- --------------------------------------------------------
 
@@ -250,7 +255,8 @@ CREATE TABLE `reviews` (
 
 INSERT INTO `reviews` (`id`, `hotel_id`, `user_id`, `stars`, `review_text`, `created_at`) VALUES
 (8, 13, 2, 5, 'cũng là oke', '2025-02-21 07:58:22'),
-(10, 13, 2, 2, 'Cũng không tệ lắm', '2025-02-26 04:12:27');
+(10, 13, 2, 2, 'Cũng không tệ lắm', '2025-02-26 04:12:27'),
+(11, 13, 6, 5, 'cũng tàm tạm', '2025-02-27 07:23:20');
 
 --
 -- Bẫy `reviews`
@@ -291,9 +297,12 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `hotel_id`, `type_id`, `name`, `status`) VALUES
-(18, 13, 5, 'VIP2', 0),
-(19, 13, 7, 'A1', 0),
-(20, 13, 7, 'B1', 0);
+(21, 14, 9, 'Tổng thống 1', 0),
+(22, 14, 8, 'Phòng xịn 1', 0),
+(23, 14, 8, 'Phòng xịn 2', 0),
+(24, 14, 9, 'Tổng thống 2', 0),
+(25, 13, 11, 'VIP1', 0),
+(26, 13, 11, 'VIP2', 0);
 
 --
 -- Bẫy `rooms`
@@ -352,22 +361,56 @@ CREATE TABLE `room_types` (
 --
 
 INSERT INTO `room_types` (`id`, `hotel_id`, `name`, `photo_url`, `description`, `price`, `bed_count`) VALUES
-(5, 13, 'Luxury', 'bbf3c9f83d6cf343dbedd00fad03117b.jpg', 'okelahaha\r\n', 200000.00, 4),
-(7, 13, 'Prison', '1c75fb9dcee65740b7f8ae8125a15cdc.jpg', 'Nhà tù trải nghiệm', 20000.00, 4);
+(8, 14, 'Phòng xịn', 'f26791f6c7306fa8fdb19e70140ee689.jpg', 'Đẹp rẻ tiện', 400000.00, 2),
+(9, 14, 'Tổng thống', '2aef0015b0e134aef94c016463370a3d.jpg', 'Perfect', 2000000.00, 3),
+(10, 15, 'Phòng xịn', '7e936874be3a731ea5ec13a66f6be61c.jpg', 'hay', 60000.00, 2),
+(11, 13, 'Thổng thống xịn', 'f6d4b8c5e40426d1893cc2970b0f65f7.jpg', 'tuyệt', 5000000.00, 2);
 
 --
 -- Bẫy `room_types`
 --
 DELIMITER $$
-CREATE TRIGGER `update_starting_price` AFTER INSERT ON `room_types` FOR EACH ROW BEGIN
-    DECLARE min_price DECIMAL(10, 2);
+CREATE TRIGGER `update_starting_price_after_delete` AFTER DELETE ON `room_types` FOR EACH ROW BEGIN
+    DECLARE min_price DECIMAL(10,2);
 
-    -- Tìm giá phòng thấp nhất của loại phòng cho khách sạn liên quan
+    -- Tìm giá thấp nhất sau khi xóa
+    SELECT MIN(price) INTO min_price
+    FROM room_types
+    WHERE hotel_id = OLD.hotel_id;
+
+    -- Cập nhật starting_price, nếu không còn phòng thì set về 0
+    UPDATE hotels
+    SET starting_price = IFNULL(min_price, 0)
+    WHERE id = OLD.hotel_id;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `update_starting_price_after_insert` AFTER INSERT ON `room_types` FOR EACH ROW BEGIN
+    DECLARE min_price DECIMAL(10,2);
+
+    -- Tìm giá thấp nhất trong room_types cho hotel_id
     SELECT MIN(price) INTO min_price
     FROM room_types
     WHERE hotel_id = NEW.hotel_id;
 
-    -- Cập nhật trường starting_price trong bảng hotels
+    -- Cập nhật starting_price trong hotels
+    UPDATE hotels
+    SET starting_price = min_price
+    WHERE id = NEW.hotel_id;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `update_starting_price_after_update` AFTER UPDATE ON `room_types` FOR EACH ROW BEGIN
+    DECLARE min_price DECIMAL(10,2);
+
+    -- Tìm giá thấp nhất sau khi cập nhật
+    SELECT MIN(price) INTO min_price
+    FROM room_types
+    WHERE hotel_id = NEW.hotel_id;
+
+    -- Cập nhật starting_price
     UPDATE hotels
     SET starting_price = min_price
     WHERE id = NEW.hotel_id;
@@ -424,8 +467,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `password`, `profile_picture`, `email`, `phone_number`, `status`) VALUES
 (2, 'Đào Quang Tiến', '$2y$10$MgxlHWxVE8jh.1PArY3UFuTP61ZHVG.E5LMzasu59098oM4.orv8u', 'b3495ad5652d095a97b48828d612c83b.jpg', 'tine.dao19@gmail.com', '0979499802', 1),
-(4, 'Đinh Thị Ngọc', '$2y$10$IiBLCEcpuwcg5Z2SQcVvTuUrP/tl1A67.GbSV/g2Afmo34RpMynea', '903b7d4cbb57090567c99317b0cfe8b3.jpg', 'ngocdinhthi12@gmail.com', '0976795872', 0),
-(5, 'Áo xịn xò', '$2y$10$.XUpmT2r4NOObypbrJOVwOwvbTBfQZ.bfTC/tuiMwZ9Ver4PgWkCi', '9a2dea3f5ae7b6346e8740d46bb7eb43.png', 'hoangviet249@gmail.com', NULL, 1);
+(5, 'Áo xịn xò', '$2y$10$.XUpmT2r4NOObypbrJOVwOwvbTBfQZ.bfTC/tuiMwZ9Ver4PgWkCi', '9a2dea3f5ae7b6346e8740d46bb7eb43.png', 'hoangviet249@gmail.com', NULL, 1),
+(6, 'Đinh Thị Ngọc', '$2y$10$Xpur8wNlqH0W/Qdt2FyHNOPCmQ7TYRQSGyQ/RQSTTqdrLQAvOY8Xe', 'ba80ddece3ed194e963039a74dceee07.jpg', 'ngocdinhthi12@gmail.com', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -472,7 +515,7 @@ CREATE TABLE `vouchers` (
 
 INSERT INTO `vouchers` (`id`, `code`, `discount`, `start_date`, `created_at`, `hotel_id`, `end_date`, `status`) VALUES
 (1, 'vip1233', 100.00, '2025-01-25', '2025-01-23 09:43:39', 13, '2025-01-31', 0),
-(3, '117287740118025', 12.00, '2025-02-14', '2025-02-25 05:28:27', 13, '2025-02-28', 1);
+(3, '117287740118025', 12.00, '2025-02-14', '2025-02-25 05:28:27', 13, '2025-02-28', 0);
 
 --
 -- Bẫy `vouchers`
@@ -642,13 +685,13 @@ ALTER TABLE `blog`
 -- AUTO_INCREMENT cho bảng `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT cho bảng `hotels`
 --
 ALTER TABLE `hotels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `hotel_types`
@@ -666,25 +709,25 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT cho bảng `owners`
 --
 ALTER TABLE `owners`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT cho bảng `room_types`
 --
 ALTER TABLE `room_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `subscribe_newsletter`
@@ -696,7 +739,7 @@ ALTER TABLE `subscribe_newsletter`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `vouchers`

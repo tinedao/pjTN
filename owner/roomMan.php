@@ -50,7 +50,7 @@ if ($hotel != null && $room_types != null):
                 <select name="type_id" id="type_id" class="form-control" required>
                     <option value="">-- Chọn loại phòng --</option>
                     <?php
-                    $room_types = $db->select("room_types");
+                    $room_types = $db->select("room_types", "hotel_id = $hotel_id");
                     foreach ($room_types as $type):
                     ?>
                         <option value="<?= $type['id'] ?>"><?= $type['name'] ?></option>

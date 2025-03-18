@@ -19,7 +19,7 @@ include('config/hotel_handle.php');
                     <div class="input-group mb-3">
                         <select id="inputGroupSelect01" name="location" onchange="this.form.submit()"
                             style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-                            <option value="">Chọn huyện</option>
+                            <option value="">Tất cả</option>
                             <?php
                     $locations = $db->select('locations'); 
                     foreach ($locations as $location) {

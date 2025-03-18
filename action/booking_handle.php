@@ -97,37 +97,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $subjectMail = "Booking Room Success";
 
         $bodyMail = "
-        
-        <table border='1'>
-            <thead>
-                <tr>
-                    <th>Tên người đặt</th>
-                    <th>Email</th>
-                    <th>Tên phòng</th>
-                    <th>Giá</th>
-                    <th>Check-in</th>
-                    <th>Check-out</th>
-                    <th>Số điện thoại</th>
-                    <th>Ngày đặt</th>
-                    <th>Tên khách sạn</th>
-                    <th>Địa chỉ</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>".$DetailBooking['user_name']."</td>
-                    <td>".$DetailBooking['user_email']."</td>
-                    <td>".$DetailBooking['room_name']."</td>
-                    <td class='price'>".number_format($DetailBooking['totalPrice'], 0, ',', '.') ." VND</td>
-                    <td class='date'>". date('d/m/Y', strtotime($DetailBooking['check_in_date'])) ."</td>
-                    <td class='date'>". date('d/m/Y', strtotime($DetailBooking['check_out_date']))."</td>
-                    <td>". htmlspecialchars($DetailBooking['phone_number']) ."</td>
-                    <td class='date'>". date('d/m/Y H:i:s', strtotime($DetailBooking['created_at'])) ."</td>
-                    <td>". htmlspecialchars($DetailBooking['hotel_name']) ."</td>
-                    <td>". htmlspecialchars($DetailBooking['hotel_address']) ."</td>
-                </tr>
-            </tbody>
-        </table>";
+    <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;'>
+        <h2 style='color: #333; text-align: center;'>Thông Tin Đặt Phòng</h2>
+        <div style='border:1px solid rgba(0,0,0,0.2); border-radius: 5px; padding: 10px; margin: 10px; display: flex; justify-content: center; align-items: center;'>
+            <div style='padding: 2px 16px; width: 80%;'>
+                <h4 style='font-weight: bold;margin: 10px 0;'>Tên người đặt: <span style='font-weight: normal;'>". htmlspecialchars($DetailBooking['user_name']) ."</span></h4>
+                <p style='font-weight: bold;margin: 5px 0;'>Email: <span style='font-weight: normal;'>". htmlspecialchars($DetailBooking['user_email']) ."</span></p>
+                <p style='font-weight: bold;margin: 5px 0;'>Tên phòng: <span style='font-weight: normal;'>". htmlspecialchars($DetailBooking['room_name']) ."</span></p>
+                <p style='font-weight: bold;margin: 5px 0;'>Giá: <span style='font-weight: normal;'>". number_format($DetailBooking['totalPrice'], 0, ',', '.') ." VND</span></p>
+                <p style='font-weight: bold;margin: 5px 0;'>Check-in: <span style='font-weight: normal;'>". date('d/m/Y', strtotime($DetailBooking['check_in_date'])) ."</span></p>
+                <p style='font-weight: bold;margin: 5px 0;'>Check-out: <span style='font-weight: normal;'>". date('d/m/Y', strtotime($DetailBooking['check_out_date'])) ."</span></p>
+                <p style='font-weight: bold;margin: 5px 0;'>Số điện thoại: <span style='font-weight: normal;'>". htmlspecialchars($DetailBooking['phone_number']) ."</span></p>
+                <p style='font-weight: bold;margin: 5px 0;'>Ngày đặt: <span style='font-weight: normal;'>". date('d/m/Y H:i:s', strtotime($DetailBooking['created_at'])) ."</span></p>
+                <p style='font-weight: bold;margin: 5px 0;'>Tên khách sạn: <span style='font-weight: normal;'>". htmlspecialchars($DetailBooking['hotel_name']) ."</span></p>
+                <p style='font-weight: bold;margin: 5px 0;'>Địa chỉ: <span style='font-weight: normal;'>". htmlspecialchars($DetailBooking['hotel_address']) ."</span></p>
+            </div>
+        </div>
+    </div>";
         require "../sendmail.php";
         header("Location: ../booking.php");
         exit();
